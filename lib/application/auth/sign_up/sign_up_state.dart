@@ -7,7 +7,7 @@ class SignUpState with _$SignUpState {
   const factory SignUpState.initial({
     @Default(Email.pure()) Email email,
     @Default(Password.pure()) Password password,
-    @Default(Repassword.pure()) Repassword repassword,
+    @Default(Repassword.pure()) Repassword rePassword,
     @Default(Name.pure()) Name name,
     @Default('') String exceptionError,
   }) = _Initial;
