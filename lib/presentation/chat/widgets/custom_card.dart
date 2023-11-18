@@ -15,18 +15,16 @@ class CustomCard extends StatelessWidget {
       ),
       subtitle: Row(
         children: [
-          Icon(Icons.done_all),
-          SizedBox(width: 3),
           Text(
             'Hi Dev Stack',
             style: TextStyle(
               fontSize: 12,
-              color: Colors.white,
+              color: Colors.grey,
             ),
           ),
         ],
       ),
-      trailing: Text('10:04'),
+      trailing: Text('10:04', style: TextStyle(color: Colors.grey),),
     );
   }
 }
