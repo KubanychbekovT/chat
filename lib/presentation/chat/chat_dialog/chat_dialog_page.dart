@@ -1,3 +1,4 @@
+import 'package:chat/presentation/chat/widgets/chat_card.dart';
 import 'package:flutter/material.dart';
 
 class ChatDialogPage extends StatefulWidget {
@@ -49,59 +50,60 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
             ],
           ),
         ),
-        body: Container(
-
-          height: MediaQuery
-              .of(context)
-              .size
-              .height,
-          width: MediaQuery
-              .of(context)
-              .size
-              .width,
-          child: Stack(
-              children: [
-              ListView(),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Card(
-                          color: Color(0xff212d3b),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: TextFormField(
-                              keyboardType: TextInputType.multiline,
-                              maxLines: 5,
-                              minLines: 1,
-                              controller: _messageController,
-                              decoration: InputDecoration(
-                                prefixIcon: IconButton(
-                                    icon: Icon(Icons.emoji_emotions),
-                                onPressed: () {},),
-                                border: InputBorder.none,
-                                hintText: 'Message...',
-                                hintStyle: TextStyle(color: Colors.white70),
-                              ),
-                              style: TextStyle(color: Colors.white),
+        body:  Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                itemCount: _messages.length,
+                itemBuilder: (context, index) {
+                  return ChatCard(message: _messages[index]);
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Card(
+                      color: Color(0xff212d3b),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: TextFormField(
+                          keyboardType: TextInputType.multiline,
+                          maxLines: 5,
+                          minLines: 1,
+                          controller: _messageController,
+                          decoration: InputDecoration(
+                            prefixIcon: IconButton(
+                              icon: Icon(Icons.emoji_emotions),
+                              onPressed: () {},
                             ),
+                            border: InputBorder.none,
+                            hintText: 'Message...',
+                            hintStyle: TextStyle(color: Colors.white70),
                           ),
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
-                      IconButton(
-                        icon: Icon(Icons.send, color: Colors.white),
-                        onPressed: () {
-                          String message = _messageController.text;
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.send, color: Colors.white),
+                    onPressed: () {
+                      String message = _messageController.text;
+                      if (message.isNotEmpty) {
+                        setState(() {
                           _messages.add(message);
                           _messageController.clear();
-                        },
-                      ),
-                    ],
+                        });
+                      }
+                    },
                   ),
-                ),
-              ],
-          ),
+                ],
+              ),
+            ),
+          ],
         ),
     );
   }
