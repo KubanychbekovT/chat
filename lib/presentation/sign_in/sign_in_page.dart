@@ -1,4 +1,5 @@
 import 'package:chat/application/auth/sign_in/sign_in_cubit.dart';
+import 'package:chat/presentation/chat/chat_overview/chat_overivew_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,13 +17,17 @@ class SignInPage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: BlocConsumer<SignInCubit, SignInState>(
           listener: (context, state) {
-            if (state is SignInStateSuccess) {
-              // Navigation logic upon successful sign-in
-            } else if (state is SignInStateError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.errorMessage)),
-              );
-            }
+            state.when(
+              success: () {
+               Navigator.push(context, MaterialPageRoute(builder: (context) => ChatOverviewPage(),));
+              },
+              error: (errorMessage) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(errorMessage)),
+                );
+              },
+             initial: () {  }, loading: () {  },
+            );
           },
           builder: (context, state) {
             return Column(
@@ -53,8 +58,7 @@ class SignInPage extends StatelessWidget {
                 const SizedBox(height: 24.0),
                 ElevatedButton(
                   onPressed: () {
-                    // Replace with valid email and password references or form values
-                    signInCubit.signIn(email, password);
+                    signInCubit.signIn('', '');
                   },
                   child: const Text('Sign In'),
                 ),

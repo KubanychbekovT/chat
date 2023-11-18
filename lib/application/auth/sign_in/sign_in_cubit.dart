@@ -12,11 +12,10 @@ class SignInCubit extends Cubit<SignInState> {
 
     try {
       await Future.delayed(const Duration(seconds: 2));
-
       emit(const SignInState.success());
     } catch (e) {
       emit(SignInState.error(errorMessage: 'Failed to sign in'));
-
     }
   }
 }
+
