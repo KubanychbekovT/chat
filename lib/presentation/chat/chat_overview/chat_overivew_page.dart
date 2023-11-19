@@ -1,6 +1,7 @@
 import 'package:chat/presentation/chat/chat_dialog/chat_dialog_page.dart';
 import 'package:chat/presentation/chat/widgets/custom_card.dart';
 import 'package:chat/presentation/chat/widgets/select_contact.dart';
+import 'package:chat/presentation/core/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class ChatOverviewPage extends StatefulWidget {
@@ -16,6 +17,7 @@ class _ChatOverviewPageState extends State<ChatOverviewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
