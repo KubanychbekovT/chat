@@ -1,7 +1,6 @@
 import 'package:chat/application/auth/sign_in/sign_in_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../chat/chat_overview/chat_overivew_page.dart';
 
 class SignInPage extends StatelessWidget {
@@ -52,7 +51,6 @@ class SignInPage extends StatelessWidget {
                     ),
                     keyboardType: TextInputType.emailAddress,
                     onChanged: (value) {
-                      // Logic to update email
                     },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -71,7 +69,6 @@ class SignInPage extends StatelessWidget {
                     ),
                     obscureText: true,
                     onChanged: (value) {
-                      // Logic to update password
                     },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -86,7 +83,7 @@ class SignInPage extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        signInCubit.signIn('', ''); // Ваша логика входа
+                        signInCubit.signIn('', '');
                       }
                     },
                     style: ElevatedButton.styleFrom(

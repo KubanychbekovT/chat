@@ -75,15 +75,11 @@ class _ChatOverviewPageState extends State<ChatOverviewPage> {
 
   Widget _buildSearchField() {
     return TextField(
-      // Опции для поля поиска
       decoration: InputDecoration(
         hintText: 'Search',
         hintStyle: TextStyle(color: Colors.grey),
-        // Другие параметры стиля или декорации
       ),
       onChanged: (value) {
-        // Обработка изменений в поле поиска
-        // Можно добавить здесь логику поиска и фильтрации элементов
       },
     );
   }

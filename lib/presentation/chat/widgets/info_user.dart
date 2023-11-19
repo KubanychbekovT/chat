@@ -22,7 +22,6 @@ class UserDetailPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //SizedBox(height: 30),
             Row(
               children: [
                 Padding(
@@ -64,7 +63,6 @@ class UserDetailPage extends StatelessWidget {
                       color: Colors.grey,
                     ),
                   ),
-                  // Здесь можно добавить больше информации о пользователе
                 ],
               ),
             ),

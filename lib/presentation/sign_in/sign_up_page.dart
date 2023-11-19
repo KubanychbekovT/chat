@@ -26,13 +26,11 @@ class _SignUpPageState extends State<SignUpPage> {
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'E-mail',
-                  // ...Other decoration properties
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter an email';
                   }
-                  // Add email validation logic here if needed
                   return null;
                 },
               ),
@@ -40,7 +38,6 @@ class _SignUpPageState extends State<SignUpPage> {
               TextFormField(
                 decoration: InputDecoration(
                   labelText: 'Name',
-                  // ...Other decoration properties
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -63,13 +60,11 @@ class _SignUpPageState extends State<SignUpPage> {
                       });
                     },
                   ),
-                  // ...Other decoration properties
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter a password';
                   }
-                  // Add password strength validation logic here if needed
                   return null;
                 },
               ),
@@ -81,8 +76,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        // Process the form data (e.g., send it to an API)
-                        // For example: _submitForm();
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Processing Data')),
                         );

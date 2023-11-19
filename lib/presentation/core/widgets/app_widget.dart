@@ -14,7 +14,7 @@ class AppWidget extends StatelessWidget {
       title: 'ChatAppX',
       home: BlocProvider(
         create: (context) => SignInCubit(),
-        child: ChatOverviewPage(),
+        child: SignInPage(),
       ),
     );
   }
