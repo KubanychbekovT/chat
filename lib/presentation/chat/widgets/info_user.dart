@@ -1,0 +1,76 @@
+import 'package:flutter/material.dart';
+
+class UserDetailPage extends StatelessWidget {
+  final String username;
+  final String bio;
+
+  const UserDetailPage({
+    Key? key,
+    required this.username,
+    required this.bio,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xff1b252f),
+      appBar: AppBar(
+        backgroundColor: Color(0xff222e3a),
+        title: Text('Profile'),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            //SizedBox(height: 30),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.blueGrey,
+                    radius: 30,
+                  ),
+                ),
+                SizedBox(width: 20),
+                Text(
+                  username,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+    'Information',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    bio,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  // Здесь можно добавить больше информации о пользователе
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

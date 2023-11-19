@@ -11,29 +11,54 @@ class ChatOverviewPage extends StatefulWidget {
 }
 
 class _ChatOverviewPageState extends State<ChatOverviewPage> {
+  bool _isSearching = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => SelectContact()));
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SelectContact()),
+          );
         },
         child: Icon(Icons.chat),
       ),
       appBar: AppBar(
-        title: Text('ChatAppX'),
+        title: _isSearching ? _buildSearchField() : Text('ChatAppX'),
         backgroundColor: Color(0xff222e3a),
-        leading: Icon(Icons.search, ),
+        leading: _isSearching ? IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            setState(() {
+              _isSearching = false;
+            });
+          },
+        ) : null,
+        actions: [
+          _isSearching ? SizedBox.shrink() : IconButton(
+            onPressed: () {
+              setState(() {
+                _isSearching = true;
+              });
+            },
+            icon: Icon(Icons.search),
+          ),
+        ],
       ),
-      //drawer: Drawer,
       backgroundColor: Color(0xff1b252f),
       body: ListView(
         children: [
           GestureDetector(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ChatDialogPage(),));
-              },
-              child: CustomCard()),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChatDialogPage()),
+              );
+            },
+            child: CustomCard(),
+          ),
           Divider(),
           CustomCard(),
           Divider(),
@@ -43,6 +68,21 @@ class _ChatOverviewPageState extends State<ChatOverviewPage> {
           Divider(),
         ],
       ),
+    );
+  }
+
+  Widget _buildSearchField() {
+    return TextField(
+      // Опции для поля поиска
+      decoration: InputDecoration(
+        hintText: 'Search',
+        hintStyle: TextStyle(color: Colors.grey),
+        // Другие параметры стиля или декорации
+      ),
+      onChanged: (value) {
+        // Обработка изменений в поле поиска
+        // Можно добавить здесь логику поиска и фильтрации элементов
+      },
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:chat/presentation/chat/widgets/chat_card.dart';
+import 'package:chat/presentation/chat/widgets/info_user.dart';
 import 'package:flutter/material.dart';
 
 class ChatDialogPage extends StatefulWidget {
@@ -39,8 +40,13 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
           ),
           title: Column(
             children: [
-              Text('Dev Stack',
-                style: TextStyle(fontSize: 18.5, fontWeight: FontWeight.bold,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => UserDetailPage(username: 'Dev Stack', bio: 'Flutter Engineer'),));
+                },
+                child: Text('Dev Stack',
+                  style: TextStyle(fontSize: 18.5, fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               Text(
