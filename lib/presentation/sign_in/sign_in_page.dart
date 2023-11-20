@@ -50,12 +50,12 @@ class SignInPage extends StatelessWidget {
                       border: OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.emailAddress,
-                    onChanged: (value) {
-                    },
+                    onChanged: (value) {},
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your email';
-                      } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                      } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                          .hasMatch(value)) {
                         return 'Please enter a valid email';
                       }
                       return null;
@@ -68,8 +68,7 @@ class SignInPage extends StatelessWidget {
                       border: OutlineInputBorder(),
                     ),
                     obscureText: true,
-                    onChanged: (value) {
-                    },
+                    onChanged: (value) {},
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
@@ -90,7 +89,11 @@ class SignInPage extends StatelessWidget {
                       primary: Color(0xff1b252f),
                       minimumSize: Size(double.infinity, 50),
                     ),
-                    child: const Text('Sign In'),
+                    child: BlocBuilder<SignInCubit, SignInState>(
+                      builder: (context, state) {
+                        return state.maybeMap(loading: (_)=>const Center(child:  CircularProgressIndicator(),),orElse: ()=>const Text('Sign In'));
+                      },
+                    ),
                   ),
                   // Other UI elements
                 ],

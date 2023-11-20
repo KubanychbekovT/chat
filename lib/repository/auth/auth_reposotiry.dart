@@ -8,7 +8,8 @@ class AuthRepository {
     final response = await dio.post("${Constants.serverBaseUrl}/loginClient",
 
         data: FormData.fromMap({"email": email, "password": password}));
-    await TokenStorage().setAccessToken(response.data["token"]);
+    print("signIn ${response.statusCode} and ${response.data}");
+    await TokenStorage().setAccessToken(response.data["access_token"]);
     await TokenStorage().setRefreshToken(response.data["refresh_token"]);
     await TokenStorage().setId(response.data["object"]["_id"]);
     return;
