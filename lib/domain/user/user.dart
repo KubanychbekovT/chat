@@ -1,6 +1,31 @@
 class User {
-  final String name;
-  bool selected;
+  final int id;
+  final String nickname;
+  final String email;
+  final String role;
 
-  User({required this.name, this.selected = false});
+  User({
+    required this.id,
+    required this.nickname,
+    required this.email,
+    required this.role,
+  });
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+        id: json['id'] as int,
+        nickname: json['nickname'] as String,
+        email: json['email'] as String,
+        role: json['role'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'nickname': nickname,
+      'email': email,
+      'role': role,
+    };
+  }
 }
