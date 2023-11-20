@@ -33,7 +33,7 @@ class TokenStorage{
   static bool get isAuthorized => _sharedPreferences.getString("access") != null;
   static String? get accessToken => _sharedPreferences.getString('access');
   static String? get refreshToken => _sharedPreferences.getString('refresh');
-  //static String? get id => _sharedPreferences.getString('id');
+  static String? get id => _sharedPreferences.getString('id');
   static User? get user {
     final userString = _sharedPreferences.getString('user');
     if (userString != null) {
