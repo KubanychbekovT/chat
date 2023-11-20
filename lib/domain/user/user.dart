@@ -3,12 +3,14 @@ class User {
   final String nickname;
   final String email;
   final String role;
+  bool selected;
 
   User({
-    required this.id,
+     this.id = 0,
     required this.nickname,
     required this.email,
-    required this.role,
+     this.role = '',
+    this.selected = false,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {

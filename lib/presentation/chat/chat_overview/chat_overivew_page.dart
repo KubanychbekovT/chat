@@ -18,15 +18,15 @@ class _ChatOverviewPageState extends State<ChatOverviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: CustomDrawer(),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     Navigator.push(
-      //       context,
-      //       MaterialPageRoute(builder: (context) => SelectContact()),
-      //     );
-      //   },
-      //   child: Icon(Icons.chat),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SelectContact()),
+          );
+        },
+        child: Icon(Icons.chat),
+      ),
       appBar: AppBar(
         title: _isSearching ? _buildSearchField() : Text('ChatAppX'),
         backgroundColor: Color(0xff222e3a),

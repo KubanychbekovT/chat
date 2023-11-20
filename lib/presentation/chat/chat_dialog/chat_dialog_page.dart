@@ -39,6 +39,7 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
             ),
           ),
           title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GestureDetector(
                 onTap: () {
