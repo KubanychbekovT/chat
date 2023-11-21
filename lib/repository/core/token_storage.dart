@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:chat/domain/user/user.dart';
 import 'package:chat/repository/get_it/get_it_initializer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
