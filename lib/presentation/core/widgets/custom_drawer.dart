@@ -1,3 +1,6 @@
+import 'package:chat/presentation/chat/more/settings/settings_page.dart';
+import 'package:chat/presentation/chat/more/user_information/user_information_page.dart';
+import 'package:chat/presentation/chat/widgets/select_contact.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -34,29 +37,35 @@ class _CustomDrawerState extends State<CustomDrawer> {
                   ListTile(
                     leading: const Icon(Icons.person, color: Colors.grey),
                     title: const Text(
-                      'Моя информация',
+                      'My Information',
                       style: TextStyle(color: Colors.white),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => UserInformationPage(username: '', bio: '',),));
+                    },
                   ),
                   const Divider(color: Colors.black54),
                   ListTile(
-                    leading: const Icon(Icons.question_mark_outlined,
+                    leading: const Icon(Icons.chat,
                         color: Colors.grey),
-                    title: const Text('Частые вопросы',
+                    title: const Text('New Group',
                         style: TextStyle(color: Colors.white)),
-                    onTap: () {},
+                     onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SelectContact()));
+                    },
                   ),
                   ListTile(
-                    leading: const Icon(Icons.notifications_none_outlined,
+                    leading: const Icon(Icons.settings,
                         color: Colors.grey),
-                    title: const Text('Уведомления',
+                    title: const Text('Settings',
                         style: TextStyle(color: Colors.white)),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage()));
+                    },
                   ),
                   ListTile(
                     leading: const Icon(Icons.logout, color: Colors.grey),
-                    title: const Text('Выйти',
+                    title: const Text('Log Out',
                         style: TextStyle(color: Colors.white)),
                     onTap: () {},
                   ),
