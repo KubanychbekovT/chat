@@ -1,3 +1,4 @@
+import 'package:chat/domain/message/message.dart';
 import 'package:chat/presentation/chat/widgets/chat_card.dart';
 import 'package:chat/presentation/chat/widgets/info_user.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class ChatDialogPage extends StatefulWidget {
 
 class _ChatDialogPageState extends State<ChatDialogPage> {
   TextEditingController _messageController = TextEditingController();
-  List<String> _messages = [];
+  List<Message> _messages = [];
 
   @override
   Widget build(BuildContext context) {
@@ -98,9 +99,10 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
                   IconButton(
                     icon: Icon(Icons.send, color: Colors.white),
                     onPressed: () {
-                      String message = _messageController.text;
-                      if (message.isNotEmpty) {
+                      String messageText = _messageController.text;
+                      if (messageText.isNotEmpty) {
                         setState(() {
+                          Message message = Message(text: messageText, time: DateTime.now());
                           _messages.add(message);
                           _messageController.clear();
                         });

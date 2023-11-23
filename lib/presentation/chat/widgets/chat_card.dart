@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:chat/domain/message/message.dart';
 
 class ChatCard extends StatelessWidget {
-  final String message;
+  final Message message;
 
   const ChatCard({required this.message, Key? key}) : super(key: key);
 
@@ -16,9 +17,19 @@ class ChatCard extends StatelessWidget {
           color: Color(0xff222e3a),
           borderRadius: BorderRadius.circular(12.0),
         ),
-        child: Text(
-          message,
-          style: TextStyle(fontSize: 16, color: Colors.white),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              message.text,
+              style: TextStyle(color: Colors.white),
+            ),
+            SizedBox(height: 4),
+            Text(
+              '${message.time.hour}:${message.time.minute}',
+              style: TextStyle(color: Colors.grey),
+            ),
+          ],
         ),
       ),
     );
