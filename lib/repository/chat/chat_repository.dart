@@ -9,7 +9,7 @@ class ChatRepository {
   Future<void> sendMessage(MessageRequest message) async {
     try {
       final response = await _dio.post(
-        '/chat/allMessages',
+        'https://chatapp.tw1.ru/chat/allMessages',
       );
 
       print('Success: ${response.data}');

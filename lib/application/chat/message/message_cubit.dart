@@ -3,12 +3,12 @@ import 'package:chat/domain/message/message_request.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'message_state.dart';
 part 'message_cubit.freezed.dart';
-
+part 'message_state.dart';
 
 class MessageCubit extends Cubit<MessageState> {
   final Dio dio;
+  List<MessageRequest> _messages = [];
 
   MessageCubit(this.dio) : super(MessageState.initial());
 
@@ -18,19 +18,22 @@ class MessageCubit extends Cubit<MessageState> {
     try {
       final response = await dio.get('');
       final messages = (response.data['messages'] as List<dynamic>)
-          .map((data) =>
-          MessageRequest(content: data['content'] ?? '',
-              createdAt: data['createdAt'] ?? '',
-              fileDataIds: List<String>.from(data['fileDataIds']),
-              isRead: data['isRead'] ?? '',
-              messageType: data['messageType'] ?? '',
-              recipient: data['recipient'] ?? '',
-              sender: data['sender'] ?? ''))
-      .toList();
+          .map((data) => MessageRequest.fromJson(data))
+          .toList();
 
-      emit(MessageState.loaded(messages));
+      _messages = messages;
+      emit(MessageState.loaded(_messages));
     } catch (e) {
       emit(MessageState.error('Failed to fetch messages'));
+    }
+  }
+
+  Future<void> sendMessage(MessageRequest message) async {
+    try {
+      _messages.add(message);
+      emit(MessageState.loaded(_messages));
+    } catch (e) {
+      emit(MessageState.error('Failed to send message'));
     }
   }
 }
