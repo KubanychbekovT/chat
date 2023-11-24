@@ -58,10 +58,39 @@ class _SelectContactState extends State<SelectContact> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _createGroup();
-        },
+        onPressed: selectedContacts.isNotEmpty ? _createGroup : null,
         child: Icon(Icons.group),
+      ),
+      bottomNavigationBar: selectedContacts.isNotEmpty ? _buildSelectedContactsInfo() : null,
+    );
+  }
+
+  Widget _buildSelectedContactsInfo() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      color: Colors.grey[900],
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            'Selected Contacts: ${selectedContacts.length}',
+            style: TextStyle(color: Colors.white),
+          ),
+          TextButton(
+            onPressed: () {
+              setState(() {
+                selectedContacts.clear();
+                contacts.forEach((user) {
+                  user.selected = false;
+                });
+              });
+            },
+            child: Text(
+              'Clear All',
+              style: TextStyle(color: Colors.blue),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -70,4 +99,3 @@ class _SelectContactState extends State<SelectContact> {
     print('Created group with: ${selectedContacts.map((user) => user.nickname).toList()}');
   }
 }
-

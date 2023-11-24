@@ -22,6 +22,7 @@ mixin _$MessageState {
     required TResult Function() loading,
     required TResult Function(List<MessageRequest> messages) loaded,
     required TResult Function(String errorMessage) error,
+    required TResult Function(Group group) groupCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$MessageState {
     TResult? Function()? loading,
     TResult? Function(List<MessageRequest> messages)? loaded,
     TResult? Function(String errorMessage)? error,
+    TResult? Function(Group group)? groupCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$MessageState {
     TResult Function()? loading,
     TResult Function(List<MessageRequest> messages)? loaded,
     TResult Function(String errorMessage)? error,
+    TResult Function(Group group)? groupCreated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$MessageState {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_GroupCreated value) groupCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$MessageState {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_GroupCreated value)? groupCreated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$MessageState {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_GroupCreated value)? groupCreated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,6 +134,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() loading,
     required TResult Function(List<MessageRequest> messages) loaded,
     required TResult Function(String errorMessage) error,
+    required TResult Function(Group group) groupCreated,
   }) {
     return initial();
   }
@@ -139,6 +146,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? loading,
     TResult? Function(List<MessageRequest> messages)? loaded,
     TResult? Function(String errorMessage)? error,
+    TResult? Function(Group group)? groupCreated,
   }) {
     return initial?.call();
   }
@@ -150,6 +158,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? loading,
     TResult Function(List<MessageRequest> messages)? loaded,
     TResult Function(String errorMessage)? error,
+    TResult Function(Group group)? groupCreated,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -165,6 +174,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_GroupCreated value) groupCreated,
   }) {
     return initial(this);
   }
@@ -176,6 +186,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_GroupCreated value)? groupCreated,
   }) {
     return initial?.call(this);
   }
@@ -187,6 +198,7 @@ class _$InitialImpl implements _Initial {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_GroupCreated value)? groupCreated,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -242,6 +254,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() loading,
     required TResult Function(List<MessageRequest> messages) loaded,
     required TResult Function(String errorMessage) error,
+    required TResult Function(Group group) groupCreated,
   }) {
     return loading();
   }
@@ -253,6 +266,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? loading,
     TResult? Function(List<MessageRequest> messages)? loaded,
     TResult? Function(String errorMessage)? error,
+    TResult? Function(Group group)? groupCreated,
   }) {
     return loading?.call();
   }
@@ -264,6 +278,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? loading,
     TResult Function(List<MessageRequest> messages)? loaded,
     TResult Function(String errorMessage)? error,
+    TResult Function(Group group)? groupCreated,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -279,6 +294,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_GroupCreated value) groupCreated,
   }) {
     return loading(this);
   }
@@ -290,6 +306,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_GroupCreated value)? groupCreated,
   }) {
     return loading?.call(this);
   }
@@ -301,6 +318,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_GroupCreated value)? groupCreated,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -389,6 +407,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() loading,
     required TResult Function(List<MessageRequest> messages) loaded,
     required TResult Function(String errorMessage) error,
+    required TResult Function(Group group) groupCreated,
   }) {
     return loaded(messages);
   }
@@ -400,6 +419,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? loading,
     TResult? Function(List<MessageRequest> messages)? loaded,
     TResult? Function(String errorMessage)? error,
+    TResult? Function(Group group)? groupCreated,
   }) {
     return loaded?.call(messages);
   }
@@ -411,6 +431,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? loading,
     TResult Function(List<MessageRequest> messages)? loaded,
     TResult Function(String errorMessage)? error,
+    TResult Function(Group group)? groupCreated,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -426,6 +447,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_GroupCreated value) groupCreated,
   }) {
     return loaded(this);
   }
@@ -437,6 +459,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_GroupCreated value)? groupCreated,
   }) {
     return loaded?.call(this);
   }
@@ -448,6 +471,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_GroupCreated value)? groupCreated,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -535,6 +559,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() loading,
     required TResult Function(List<MessageRequest> messages) loaded,
     required TResult Function(String errorMessage) error,
+    required TResult Function(Group group) groupCreated,
   }) {
     return error(errorMessage);
   }
@@ -546,6 +571,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? loading,
     TResult? Function(List<MessageRequest> messages)? loaded,
     TResult? Function(String errorMessage)? error,
+    TResult? Function(Group group)? groupCreated,
   }) {
     return error?.call(errorMessage);
   }
@@ -557,6 +583,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? loading,
     TResult Function(List<MessageRequest> messages)? loaded,
     TResult Function(String errorMessage)? error,
+    TResult Function(Group group)? groupCreated,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -572,6 +599,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function(_Loading value) loading,
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Error value) error,
+    required TResult Function(_GroupCreated value) groupCreated,
   }) {
     return error(this);
   }
@@ -583,6 +611,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function(_Loading value)? loading,
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Error value)? error,
+    TResult? Function(_GroupCreated value)? groupCreated,
   }) {
     return error?.call(this);
   }
@@ -594,6 +623,7 @@ class _$ErrorImpl implements _Error {
     TResult Function(_Loading value)? loading,
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Error value)? error,
+    TResult Function(_GroupCreated value)? groupCreated,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -609,5 +639,156 @@ abstract class _Error implements MessageState {
   String get errorMessage;
   @JsonKey(ignore: true)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$GroupCreatedImplCopyWith<$Res> {
+  factory _$$GroupCreatedImplCopyWith(
+          _$GroupCreatedImpl value, $Res Function(_$GroupCreatedImpl) then) =
+      __$$GroupCreatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Group group});
+}
+
+/// @nodoc
+class __$$GroupCreatedImplCopyWithImpl<$Res>
+    extends _$MessageStateCopyWithImpl<$Res, _$GroupCreatedImpl>
+    implements _$$GroupCreatedImplCopyWith<$Res> {
+  __$$GroupCreatedImplCopyWithImpl(
+      _$GroupCreatedImpl _value, $Res Function(_$GroupCreatedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? group = null,
+  }) {
+    return _then(_$GroupCreatedImpl(
+      null == group
+          ? _value.group
+          : group // ignore: cast_nullable_to_non_nullable
+              as Group,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$GroupCreatedImpl implements _GroupCreated {
+  const _$GroupCreatedImpl(this.group);
+
+  @override
+  final Group group;
+
+  @override
+  String toString() {
+    return 'MessageState.groupCreated(group: $group)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GroupCreatedImpl &&
+            (identical(other.group, group) || other.group == group));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, group);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GroupCreatedImplCopyWith<_$GroupCreatedImpl> get copyWith =>
+      __$$GroupCreatedImplCopyWithImpl<_$GroupCreatedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(List<MessageRequest> messages) loaded,
+    required TResult Function(String errorMessage) error,
+    required TResult Function(Group group) groupCreated,
+  }) {
+    return groupCreated(group);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(List<MessageRequest> messages)? loaded,
+    TResult? Function(String errorMessage)? error,
+    TResult? Function(Group group)? groupCreated,
+  }) {
+    return groupCreated?.call(group);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(List<MessageRequest> messages)? loaded,
+    TResult Function(String errorMessage)? error,
+    TResult Function(Group group)? groupCreated,
+    required TResult orElse(),
+  }) {
+    if (groupCreated != null) {
+      return groupCreated(group);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Error value) error,
+    required TResult Function(_GroupCreated value) groupCreated,
+  }) {
+    return groupCreated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Error value)? error,
+    TResult? Function(_GroupCreated value)? groupCreated,
+  }) {
+    return groupCreated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Error value)? error,
+    TResult Function(_GroupCreated value)? groupCreated,
+    required TResult orElse(),
+  }) {
+    if (groupCreated != null) {
+      return groupCreated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GroupCreated implements MessageState {
+  const factory _GroupCreated(final Group group) = _$GroupCreatedImpl;
+
+  Group get group;
+  @JsonKey(ignore: true)
+  _$$GroupCreatedImplCopyWith<_$GroupCreatedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

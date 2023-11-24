@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:chat/domain/group/group.dart';
+import 'package:chat/domain/group/group_request.dart';
 import 'package:chat/domain/message/message_request.dart';
 import 'package:dio/dio.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -36,4 +38,20 @@ class MessageCubit extends Cubit<MessageState> {
       emit(MessageState.error('Failed to send message'));
     }
   }
+
+
+  Future<void> createGroup(GroupRequest groupRequest) async {
+    try {
+      final response = await dio.post(
+        'https://your_api_url.com/chat/createGroup',
+        data: groupRequest.toJson(),
+      );
+
+      final group = Group.fromJson(response.data);
+      emit(MessageState.groupCreated(group));
+    } catch (e) {
+      emit(MessageState.error('Failed to create group'));
+    }
+  }
 }
+

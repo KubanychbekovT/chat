@@ -1,4 +1,5 @@
 import 'package:chat/application/chat/message/message_cubit.dart';
+import 'package:chat/domain/group/group.dart';
 import 'package:chat/domain/message/message.dart';
 import 'package:chat/domain/message/message_request.dart';
 import 'package:chat/presentation/chat/widgets/chat_card.dart';
@@ -85,6 +86,9 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
                     );
                   },
                   error: (errorMessage) => Center(child: Text(errorMessage)),
+                  groupCreated: (Group group)  {
+                    return Center(child: Text('Group Created'),);
+                  },
                 ),
               ),
 
