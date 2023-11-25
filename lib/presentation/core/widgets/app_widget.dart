@@ -1,4 +1,5 @@
 import 'package:chat/application/auth/sign_in/sign_in_cubit.dart';
+import 'package:chat/application/chat/chat/all_chats_cubit.dart';
 import 'package:chat/application/chat/message/message_cubit.dart';
 import 'package:chat/presentation/core/main_page.dart';
 import 'package:chat/presentation/sign_in/sign_in_page.dart';
@@ -19,6 +20,8 @@ class AppWidget extends StatelessWidget {
         BlocProvider(
           create: (context) => MessageCubit(dio),
         ),
+        BlocProvider(
+            create:(context) => ChatCubit(), )
       ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

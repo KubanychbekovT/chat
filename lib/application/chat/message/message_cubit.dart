@@ -43,7 +43,7 @@ class MessageCubit extends Cubit<MessageState> {
   Future<void> createGroup(GroupRequest groupRequest) async {
     try {
       final response = await dio.post(
-        'https://your_api_url.com/chat/createGroup',
+        'https://chatapp.tw1.ru/chat/createGroup',
         data: groupRequest.toJson(),
       );
 
