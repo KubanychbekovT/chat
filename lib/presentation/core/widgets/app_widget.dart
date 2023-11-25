@@ -25,7 +25,7 @@ class AppWidget extends StatelessWidget {
       ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          home: MainPage(),
+          home: SignInPage(),
           title: 'ChatAppX',
         ),
     );
