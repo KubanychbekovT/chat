@@ -1,4 +1,7 @@
 import 'package:chat/application/auth/sign_in/sign_in_cubit.dart';
+import 'package:chat/presentation/core/main_page.dart';
+import 'package:chat/presentation/sign_in/forgot_password.dart';
+import 'package:chat/presentation/sign_in/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../chat/chat_overview/chat_overivew_page.dart';
@@ -26,7 +29,7 @@ class SignInPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => ChatOverviewPage(),
+                      builder: (context) => MainPage(),
                     ),
                   );
                 },
@@ -78,6 +81,23 @@ class SignInPage extends StatelessWidget {
                       return null;
                     },
                   ),
+                  SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpPage(),));
+                          },
+                          child: Text('Sign Up', style: TextStyle(color: Colors.blue, fontSize: 16),)),
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPassword(),));
+                          },
+                          child: Text('Forgot password?', style: TextStyle(color: Colors.blue, fontSize: 16),)),
+                    ],
+                  ),
+
                   const SizedBox(height: 32.0),
                   ElevatedButton(
                     onPressed: () {

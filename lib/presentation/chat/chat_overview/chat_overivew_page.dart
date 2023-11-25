@@ -1,6 +1,5 @@
 import 'package:chat/presentation/chat/chat_dialog/chat_dialog_page.dart';
 import 'package:chat/presentation/chat/widgets/custom_card.dart';
-import 'package:chat/presentation/chat/widgets/select_contact.dart';
 import 'package:chat/presentation/core/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -41,26 +40,24 @@ class _ChatOverviewPageState extends State<ChatOverviewPage> {
         ],
       ),
       backgroundColor: Color(0xff1b252f),
-      body: ListView(
-        children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => ChatDialogPage()),
-              );
-            },
-            child: CustomCard(),
-          ),
-          Divider(),
-          CustomCard(),
-          Divider(),
-          CustomCard(),
-          Divider(),
-          CustomCard(),
-          Divider(),
-        ],
-      ),
+      body: ListView.builder(
+        itemCount: 6,
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ChatDialogPage()),
+                  );
+                },
+                child: CustomCard(),
+              ),
+              if (index != 5) Divider(),
+            ],
+          );
+        })
     );
   }
 
@@ -69,7 +66,6 @@ class _ChatOverviewPageState extends State<ChatOverviewPage> {
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         hintText: 'Search',
-
         labelStyle: TextStyle(color: Colors.white),
         hintStyle: TextStyle(color: Colors.grey),
       ),

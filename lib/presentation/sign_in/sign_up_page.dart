@@ -15,6 +15,10 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+          appBar: AppBar(
+            title: Text('Sign Up'),
+            backgroundColor: Color(0xff222e3a),
+          ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
@@ -37,7 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
               SizedBox(height: 20),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: 'Name',
+                  labelText: 'Nickname',
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -74,6 +78,10 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xff1b252f),
+                      minimumSize: Size(double.infinity, 50),
+                    ),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         ScaffoldMessenger.of(context).showSnackBar(

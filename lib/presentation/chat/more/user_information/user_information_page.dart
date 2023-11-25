@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class UserInformationPage extends StatelessWidget {
-  final String username;
-  final String bio;
+  final String nickname;
+  final String email;
 
-  const UserInformationPage({super.key, required this.username, required this.bio});
+  const UserInformationPage({super.key, required this.nickname, required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class UserInformationPage extends StatelessWidget {
                 ),
                 SizedBox(width: 20),
                 Text(
-                  username,
+                  nickname,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20,
@@ -53,7 +53,7 @@ class UserInformationPage extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    bio,
+                    email,
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.grey,

@@ -41,7 +41,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => UserInformationPage(username: '', bio: '',),));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => UserInformationPage(nickname: 'Tiger', email: 'amur@gmail.com',),));
                     },
                   ),
                   const Divider(color: Colors.black54),
