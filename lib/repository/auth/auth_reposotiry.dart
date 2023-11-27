@@ -17,10 +17,6 @@ class AuthRepository {
 
       final options = Options(
         contentType: Headers.jsonContentType,
-        // You can add additional headers if needed
-        // headers: {
-        //   "Authorization": "Bearer $accessToken",
-        // },
       );
 
       final response = await Dio().post(
@@ -36,31 +32,31 @@ class AuthRepository {
     }
   }
 }
-//   Future<void> signUp({
-//     required String nickname,
-//     required String phone,
-//     required String email,
-//     required String password,
-//   }) async {
-//     try {
-//       final response = await dio.post(
-//         "${Constants.serverBaseUrl}/loginClient",
-//         data: FormData.fromMap({
-//           "nickname": nickname,
-//           "email": email,
-//           "password": password,
-//         }),
-//       );
-//
-//       final accessToken = response.data["token"];
-//       final refreshToken = response.data["refresh_token"];
-//       final userId = response.data["object"]["_id"];
-//
-//       await TokenStorage().setAccessToken(accessToken);
-//       await TokenStorage().setRefreshToken(refreshToken);
-//       await TokenStorage().setId(userId);
-//     } catch (e) {
-//       throw Exception('Failed to sign up: $e');
-//     }
-//   }
-// }
+  Future<void> signUp({
+    required String nickname,
+    required String phone,
+    required String email,
+    required String password,
+  }) async {
+    try {
+      final response = await dio.post(
+        "${Constants.serverBaseUrl}/loginClient",
+        data: FormData.fromMap({
+          "nickname": nickname,
+          "email": email,
+          "password": password,
+        }),
+      );
+
+      final accessToken = response.data["token"];
+      final refreshToken = response.data["refresh_token"];
+      final userId = response.data["object"]["_id"];
+
+      await TokenStorage().setAccessToken(accessToken);
+      await TokenStorage().setRefreshToken(refreshToken);
+      await TokenStorage().setId(userId);
+    } catch (e) {
+      throw Exception('Failed to sign up: $e');
+    }
+  }
+
