@@ -1,4 +1,4 @@
-import 'package:chat/presentation/chat/chat_overview/chat_overivew_page.dart';
+import 'package:chat/presentation/chat/chat_overview/chat_overview_page.dart';
 import 'package:chat/presentation/chat/more/group/group_overview_page.dart';
 import 'package:chat/presentation/chat/more/user_information/user_information_page.dart';
 import 'package:flutter/material.dart';

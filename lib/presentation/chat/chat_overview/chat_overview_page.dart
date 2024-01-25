@@ -1,5 +1,6 @@
 import 'package:chat/presentation/chat/chat_dialog/chat_dialog_page.dart';
 import 'package:chat/presentation/chat/widgets/custom_card.dart';
+import 'package:chat/presentation/chat/widgets/search_field.dart';
 import 'package:chat/presentation/core/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 
@@ -16,12 +17,13 @@ class _ChatOverviewPageState extends State<ChatOverviewPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: CustomDrawer(),
+      drawer: const CustomDrawer(),
       appBar: AppBar(
-        title: _isSearching ? _buildSearchField() : Text('ChatAppX'),
-        backgroundColor: Color(0xff222e3a),
+        iconTheme: IconThemeData(color: Colors.white),
+        title: _isSearching ? const SearchField() : const Text('ChatAppX', style: TextStyle(color: Colors.white),),
+        backgroundColor: const Color(0xff222e3a),
         leading: _isSearching ? IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             setState(() {
               _isSearching = false;
@@ -29,17 +31,17 @@ class _ChatOverviewPageState extends State<ChatOverviewPage> {
           },
         ) : null,
         actions: [
-          _isSearching ? SizedBox.shrink() : IconButton(
+          _isSearching ? const SizedBox.shrink() : IconButton(
             onPressed: () {
               setState(() {
                 _isSearching = true;
               });
             },
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search,color: Colors.white,),
           ),
         ],
       ),
-      backgroundColor: Color(0xff1b252f),
+      backgroundColor: const Color(0xff1b252f),
       body: ListView.builder(
         itemCount: 6,
         itemBuilder: (context, index) {
@@ -49,31 +51,19 @@ class _ChatOverviewPageState extends State<ChatOverviewPage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ChatDialogPage()),
+                    MaterialPageRoute(builder: (context) => const ChatDialogPage()),
                   );
                 },
-                child: CustomCard(),
+                child: const CustomCard(),
               ),
-              if (index != 5) Divider(),
             ],
           );
         })
     );
   }
-
-  Widget _buildSearchField() {
-    return TextField(
-      style: TextStyle(color: Colors.white),
-      decoration: InputDecoration(
-        hintText: 'Search',
-        labelStyle: TextStyle(color: Colors.white),
-        hintStyle: TextStyle(color: Colors.grey),
-      ),
-      onChanged: (value) {
-      },
-    );
-  }
 }
+
+
 
 
 // class ChatOverviewPage extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:chat/presentation/chat/more/settings/settings_page.dart';
 import 'package:chat/presentation/chat/more/user_information/user_information_page.dart';
-import 'package:chat/presentation/chat/widgets/select_contact.dart';
+import 'package:chat/presentation/chat/widgets/select_user.dart';
 import 'package:flutter/material.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -17,15 +17,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
     return Drawer(
         child: Container(
             width: drawerWidth,
-            color: Color(0xff1b252f),
+            color: const Color(0xff1b252f),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 26),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 26),
                     child: ListTile(
-                      title: const Text(
+                      title: Text(
                         'Tiger',
                         style: TextStyle(
                             fontSize: 25,
@@ -41,7 +41,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => UserInformationPage(nickname: 'Tiger', email: 'amur@gmail.com',),));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const UserInformationPage(nickname: 'Tiger', email: 'amur@gmail.com',),));
                     },
                   ),
                   const Divider(color: Colors.black54),
@@ -51,7 +51,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     title: const Text('New Group',
                         style: TextStyle(color: Colors.white)),
                      onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SelectContact()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectContact()));
                     },
                   ),
                   ListTile(
@@ -60,7 +60,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                     title: const Text('Settings',
                         style: TextStyle(color: Colors.white)),
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => SettingsPage()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage()));
                     },
                   ),
                   ListTile(

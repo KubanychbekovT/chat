@@ -7,8 +7,12 @@ class ResetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Reset Password'),
-        backgroundColor: Color(0xff222e3a),
+        iconTheme: IconThemeData(color: Colors.white),
+        title: const Text(
+          'Reset Password',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: const Color(0xff222e3a),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -17,16 +21,16 @@ class ResetPassword extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'Reset Your Password',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Enter your email',
                   labelText: 'Email',
                   border: OutlineInputBorder(),
@@ -38,17 +42,23 @@ class ResetPassword extends StatelessWidget {
                   return null;
                 },
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xff1b252f),
-                  minimumSize: Size(double.infinity, 50),
-                ),
+                    primary: const Color(0xff1b252f),
+                    minimumSize: const Size(double.infinity, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4.0),
+                    )),
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                  }
+                  if (_formKey.currentState!.validate()) {}
                 },
-                child: Text('Reset Password'),
+                child: const Text(
+                  'Reset Password',
+                  style: TextStyle(color: Colors.white,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18),
+                ),
               ),
             ],
           ),

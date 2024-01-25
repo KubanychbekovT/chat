@@ -9,10 +9,11 @@ class UserInformationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff1b252f),
+      backgroundColor: const Color(0xff1b252f),
       appBar: AppBar(
-        backgroundColor: Color(0xff222e3a),
-        title: Text('Profile'),
+        backgroundColor: const Color(0xff222e3a),
+        title: const Text('Profile', style: TextStyle(color: Colors.white),),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -20,17 +21,17 @@ class UserInformationPage extends StatelessWidget {
           children: [
             Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
+                const Padding(
+                  padding: EdgeInsets.all(10.0),
                   child: CircleAvatar(
                     backgroundColor: Colors.blueGrey,
                     radius: 30,
                   ),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Text(
                   nickname,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -39,11 +40,11 @@ class UserInformationPage extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  const Text(
                     'Information',
                     style: TextStyle(
                         fontSize: 16,
@@ -51,10 +52,10 @@ class UserInformationPage extends StatelessWidget {
                         color: Colors.blue
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     email,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
                     ),

@@ -20,17 +20,19 @@ class _SelectContactState extends State<SelectContact> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff1b252f),
+      backgroundColor: const Color(0xff1b252f),
       appBar: AppBar(
-        backgroundColor: Color(0xff222e3a),
-        title: Column(
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: const Color(0xff222e3a),
+        title: const Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Select user',
               style: TextStyle(
-                fontSize: 19,
+                fontSize: 20,
+                color: Colors.white,
               ),
             ),
             Text('256 users', style: TextStyle(fontSize: 14, color: Colors.grey),)
@@ -42,7 +44,7 @@ class _SelectContactState extends State<SelectContact> {
         itemBuilder: (context, index) {
           final user = contacts[index];
           return CheckboxListTile(
-            title: Text(user.nickname, style: TextStyle(color: Colors.white),),
+            title: Text(user.nickname, style: const TextStyle(color: Colors.white),),
             value: user.selected,
             onChanged: (bool? value) {
               setState(() {
@@ -59,7 +61,7 @@ class _SelectContactState extends State<SelectContact> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: selectedContacts.isNotEmpty ? _createGroup : null,
-        child: Icon(Icons.group),
+        child: const Icon(Icons.group),
       ),
       bottomNavigationBar: selectedContacts.isNotEmpty ? _buildSelectedContactsInfo() : null,
     );
@@ -67,14 +69,14 @@ class _SelectContactState extends State<SelectContact> {
 
   Widget _buildSelectedContactsInfo() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       color: Colors.grey[900],
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             'Selected Contacts: ${selectedContacts.length}',
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
           TextButton(
             onPressed: () {
@@ -85,7 +87,7 @@ class _SelectContactState extends State<SelectContact> {
                 });
               });
             },
-            child: Text(
+            child: const Text(
               'Clear All',
               style: TextStyle(color: Colors.blue),
             ),
