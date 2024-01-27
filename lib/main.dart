@@ -5,5 +5,5 @@ import 'package:flutter/material.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   getItSetUp();
-  runApp(AppWidget());
+  runApp(const AppWidget());
 }

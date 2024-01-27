@@ -85,16 +85,31 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
                 Expanded(
                   child: state.when(
                     initial: () => const Center(child: Text('')),
-                    loading: () =>
-                        const Center(child: CircularProgressIndicator()),
+                    loading: () => const Center(child: CircularProgressIndicator()),
                     loaded: (messages) {
-                      return ListView.builder(
-                        itemCount: messages.length,
-                        itemBuilder: (context, index) {
-                          return ChatCard(message: messages[index]);
-                        },
-                      );
+                      print("Number of messages: ${messages.length}");
+
+                      if (messages.isEmpty) {
+                        print("No messages");
+                        return const Expanded(
+                          child: Center(
+                            child: Text(
+                              'Нет сообщений',
+                              style: TextStyle(color: Colors.white, fontSize: 24),
+                            ),
+                          ),
+                        );
+                      } else {
+                        print("Messages found");
+                        return ListView.builder(
+                          itemCount: messages.length,
+                          itemBuilder: (context, index) {
+                            return ChatCard(message: messages[index]);
+                          },
+                        );
+                      }
                     },
+
                     error: (errorMessage) => Center(child: Text(errorMessage)),
                     groupCreated: (Group group) {
                       return const Center(
@@ -112,7 +127,7 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
                           color: const Color(0xff212d3b),
                           child: Padding(
                             padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            const EdgeInsets.symmetric(horizontal: 8.0),
                             child: TextFormField(
                               keyboardType: TextInputType.multiline,
                               maxLines: 5,
@@ -129,7 +144,7 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
                                 border: InputBorder.none,
                                 hintText: 'Message...',
                                 hintStyle:
-                                    const TextStyle(color: Colors.white70),
+                                const TextStyle(color: Colors.white70),
                               ),
                               style: const TextStyle(color: Colors.white),
                             ),
@@ -156,7 +171,6 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
                             context
                                 .read<MessageCubit>()
                                 .sendMessage(messageRequest);
-
                             _messageController.clear();
                           }
                         },
