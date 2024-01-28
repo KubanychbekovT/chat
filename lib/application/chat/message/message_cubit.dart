@@ -1,57 +1,41 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
-import 'package:chat/domain/group/group.dart';
-import 'package:chat/domain/group/group_request.dart';
-import 'package:chat/domain/message/message_request.dart';
-import 'package:dio/dio.dart';
+import 'package:chat/domain/chat/chat/chat.dart';
+import 'package:chat/managers/chat_manager.dart';
+import 'package:chat/repository/chat/chat_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'message_cubit.freezed.dart';
+
 part 'message_state.dart';
 
 class MessageCubit extends Cubit<MessageState> {
-  final Dio dio;
-  List<MessageRequest> _messages = [];
+  final _chatRepository = ChatRepository();
+  StreamSubscription? _messagesSubscription;
 
-  MessageCubit(this.dio) : super(MessageState.initial());
+  MessageCubit() : super(MessageState.initial());
 
-  Future<void> fetchMessages() async {
-    emit(const MessageState.loading());
-
-    try {
-      final response = await dio.get('');
-      final messages = (response.data['messages'] as List<dynamic>)
-          .map((data) => MessageRequest.fromJson(data))
-          .toList();
-
-      _messages = messages;
-      emit(MessageState.loaded(_messages));
-    } catch (e) {
-      emit(MessageState.error('Failed to fetch messages'));
-    }
+  void init(Chat chat) {
+    emit(state.copyWith(chat: chat));
+    _messagesSubscription?.cancel();
+    _messagesSubscription = chatsManager.newMessageNotifierStream.listen((_) {
+      final updatedChat =
+          chatsManager.chats.firstWhere((element) => element.reference == chat.reference);
+      emit(state.copyWith(chat: updatedChat));
+    });
   }
 
-  Future<void> sendMessage(MessageRequest message) async {
+  Future<void> sendMessage(String text) async {
     try {
-      _messages.add(message);
-      emit(MessageState.loaded(_messages));
-    } catch (e) {
-      emit(MessageState.error('Failed to send message'));
-    }
+      final chat = state.chat!;
+      await _chatRepository.sendMessage(chat, text);
+    } catch (_) {}
   }
 
-
-  Future<void> createGroup(GroupRequest groupRequest) async {
-    try {
-      final response = await dio.post(
-        'https://chatapp.tw1.ru/chat/createGroup',
-        data: groupRequest.toJson(),
-      );
-
-      final group = Group.fromJson(response.data);
-      emit(MessageState.groupCreated(group));
-    } catch (e) {
-      emit(MessageState.error('Failed to create group'));
-    }
+  @override
+  Future<void> close() {
+    _messagesSubscription?.cancel();
+    return super.close();
   }
 }
-

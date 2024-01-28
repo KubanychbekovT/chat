@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'all_chats_cubit.dart';
+part of 'chat_watcher_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,12 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$ChatState {
+mixin _$ChatWatcherState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ChatResponse> chats) loaded,
+    required TResult Function(List<Chat> chats, UniqueKey key) loaded,
     required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$ChatState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ChatResponse> chats)? loaded,
+    TResult? Function(List<Chat> chats, UniqueKey key)? loaded,
     TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$ChatState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ChatResponse> chats)? loaded,
+    TResult Function(List<Chat> chats, UniqueKey key)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
@@ -69,15 +69,16 @@ mixin _$ChatState {
 }
 
 /// @nodoc
-abstract class $ChatStateCopyWith<$Res> {
-  factory $ChatStateCopyWith(ChatState value, $Res Function(ChatState) then) =
-      _$ChatStateCopyWithImpl<$Res, ChatState>;
+abstract class $ChatWatcherStateCopyWith<$Res> {
+  factory $ChatWatcherStateCopyWith(
+          ChatWatcherState value, $Res Function(ChatWatcherState) then) =
+      _$ChatWatcherStateCopyWithImpl<$Res, ChatWatcherState>;
 }
 
 /// @nodoc
-class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
-    implements $ChatStateCopyWith<$Res> {
-  _$ChatStateCopyWithImpl(this._value, this._then);
+class _$ChatWatcherStateCopyWithImpl<$Res, $Val extends ChatWatcherState>
+    implements $ChatWatcherStateCopyWith<$Res> {
+  _$ChatWatcherStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -94,7 +95,7 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ChatStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$ChatWatcherStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
@@ -108,7 +109,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'ChatState.initial()';
+    return 'ChatWatcherState.initial()';
   }
 
   @override
@@ -125,7 +126,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ChatResponse> chats) loaded,
+    required TResult Function(List<Chat> chats, UniqueKey key) loaded,
     required TResult Function(String error) error,
   }) {
     return initial();
@@ -136,7 +137,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ChatResponse> chats)? loaded,
+    TResult? Function(List<Chat> chats, UniqueKey key)? loaded,
     TResult? Function(String error)? error,
   }) {
     return initial?.call();
@@ -147,7 +148,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ChatResponse> chats)? loaded,
+    TResult Function(List<Chat> chats, UniqueKey key)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -195,7 +196,7 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements ChatState {
+abstract class _Initial implements ChatWatcherState {
   const factory _Initial() = _$InitialImpl;
 }
 
@@ -208,7 +209,7 @@ abstract class _$$LoadingImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ChatStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$ChatWatcherStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
@@ -222,7 +223,7 @@ class _$LoadingImpl implements _Loading {
 
   @override
   String toString() {
-    return 'ChatState.loading()';
+    return 'ChatWatcherState.loading()';
   }
 
   @override
@@ -239,7 +240,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ChatResponse> chats) loaded,
+    required TResult Function(List<Chat> chats, UniqueKey key) loaded,
     required TResult Function(String error) error,
   }) {
     return loading();
@@ -250,7 +251,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ChatResponse> chats)? loaded,
+    TResult? Function(List<Chat> chats, UniqueKey key)? loaded,
     TResult? Function(String error)? error,
   }) {
     return loading?.call();
@@ -261,7 +262,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ChatResponse> chats)? loaded,
+    TResult Function(List<Chat> chats, UniqueKey key)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -309,7 +310,7 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements ChatState {
+abstract class _Loading implements ChatWatcherState {
   const factory _Loading() = _$LoadingImpl;
 }
 
@@ -319,12 +320,12 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ChatResponse> chats});
+  $Res call({List<Chat> chats, UniqueKey key});
 }
 
 /// @nodoc
 class __$$LoadedImplCopyWithImpl<$Res>
-    extends _$ChatStateCopyWithImpl<$Res, _$LoadedImpl>
+    extends _$ChatWatcherStateCopyWithImpl<$Res, _$LoadedImpl>
     implements _$$LoadedImplCopyWith<$Res> {
   __$$LoadedImplCopyWithImpl(
       _$LoadedImpl _value, $Res Function(_$LoadedImpl) _then)
@@ -334,12 +335,17 @@ class __$$LoadedImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? chats = null,
+    Object? key = null,
   }) {
     return _then(_$LoadedImpl(
-      null == chats
+      chats: null == chats
           ? _value._chats
           : chats // ignore: cast_nullable_to_non_nullable
-              as List<ChatResponse>,
+              as List<Chat>,
+      key: null == key
+          ? _value.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as UniqueKey,
     ));
   }
 }
@@ -347,19 +353,25 @@ class __$$LoadedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadedImpl implements _Loaded {
-  const _$LoadedImpl(final List<ChatResponse> chats) : _chats = chats;
+  const _$LoadedImpl({required final List<Chat> chats, required this.key})
+      : _chats = chats;
 
-  final List<ChatResponse> _chats;
+  final List<Chat> _chats;
   @override
-  List<ChatResponse> get chats {
+  List<Chat> get chats {
     if (_chats is EqualUnmodifiableListView) return _chats;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_chats);
   }
 
+// Для обновления списка чатов при получении нового сообщения
+// без этого сравнение идет по количеству чатов
+  @override
+  final UniqueKey key;
+
   @override
   String toString() {
-    return 'ChatState.loaded(chats: $chats)';
+    return 'ChatWatcherState.loaded(chats: $chats, key: $key)';
   }
 
   @override
@@ -367,12 +379,13 @@ class _$LoadedImpl implements _Loaded {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedImpl &&
-            const DeepCollectionEquality().equals(other._chats, _chats));
+            const DeepCollectionEquality().equals(other._chats, _chats) &&
+            (identical(other.key, key) || other.key == key));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_chats));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_chats), key);
 
   @JsonKey(ignore: true)
   @override
@@ -385,10 +398,10 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ChatResponse> chats) loaded,
+    required TResult Function(List<Chat> chats, UniqueKey key) loaded,
     required TResult Function(String error) error,
   }) {
-    return loaded(chats);
+    return loaded(chats, key);
   }
 
   @override
@@ -396,10 +409,10 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ChatResponse> chats)? loaded,
+    TResult? Function(List<Chat> chats, UniqueKey key)? loaded,
     TResult? Function(String error)? error,
   }) {
-    return loaded?.call(chats);
+    return loaded?.call(chats, key);
   }
 
   @override
@@ -407,12 +420,12 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ChatResponse> chats)? loaded,
+    TResult Function(List<Chat> chats, UniqueKey key)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(chats);
+      return loaded(chats, key);
     }
     return orElse();
   }
@@ -455,10 +468,15 @@ class _$LoadedImpl implements _Loaded {
   }
 }
 
-abstract class _Loaded implements ChatState {
-  const factory _Loaded(final List<ChatResponse> chats) = _$LoadedImpl;
+abstract class _Loaded implements ChatWatcherState {
+  const factory _Loaded(
+      {required final List<Chat> chats,
+      required final UniqueKey key}) = _$LoadedImpl;
 
-  List<ChatResponse> get chats;
+  List<Chat>
+      get chats; // Для обновления списка чатов при получении нового сообщения
+// без этого сравнение идет по количеству чатов
+  UniqueKey get key;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -475,7 +493,7 @@ abstract class _$$ErrorImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$ChatStateCopyWithImpl<$Res, _$ErrorImpl>
+    extends _$ChatWatcherStateCopyWithImpl<$Res, _$ErrorImpl>
     implements _$$ErrorImplCopyWith<$Res> {
   __$$ErrorImplCopyWithImpl(
       _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
@@ -505,7 +523,7 @@ class _$ErrorImpl implements _Error {
 
   @override
   String toString() {
-    return 'ChatState.error(error: $error)';
+    return 'ChatWatcherState.error(error: $error)';
   }
 
   @override
@@ -530,7 +548,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ChatResponse> chats) loaded,
+    required TResult Function(List<Chat> chats, UniqueKey key) loaded,
     required TResult Function(String error) error,
   }) {
     return error(this.error);
@@ -541,7 +559,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ChatResponse> chats)? loaded,
+    TResult? Function(List<Chat> chats, UniqueKey key)? loaded,
     TResult? Function(String error)? error,
   }) {
     return error?.call(this.error);
@@ -552,7 +570,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ChatResponse> chats)? loaded,
+    TResult Function(List<Chat> chats, UniqueKey key)? loaded,
     TResult Function(String error)? error,
     required TResult orElse(),
   }) {
@@ -600,7 +618,7 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements ChatState {
+abstract class _Error implements ChatWatcherState {
   const factory _Error(final String error) = _$ErrorImpl;
 
   String get error;

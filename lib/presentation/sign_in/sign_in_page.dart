@@ -12,7 +12,8 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   bool _isObscure = true;
   bool _rememberMe = false;
 
@@ -62,22 +63,16 @@ class _SignInPageState extends State<SignInPage> {
                     key: _formKey,
                     child: BlocConsumer<SignInCubit, SignInState>(
                       listener: (context, state) {
-                        state.when(
+                        state.maybeWhen(
                           success: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => const MainPage(),
                               ),
                             );
                           },
-                          error: (errorMessage) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(content: Text(errorMessage)),
-                            );
-                          },
-                          initial: () {},
-                          loading: () {},
+                          orElse: () {},
                         );
                       },
                       builder: (context, state) {
@@ -86,6 +81,7 @@ class _SignInPageState extends State<SignInPage> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             TextFormField(
+                              controller: _emailController,
                               decoration: const InputDecoration(
                                 labelText: 'Email',
                                 border: OutlineInputBorder(),
@@ -95,8 +91,7 @@ class _SignInPageState extends State<SignInPage> {
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your email';
-                                } else if (!RegExp(
-                                        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                                } else if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
                                     .hasMatch(value)) {
                                   return 'Please enter a valid email';
                                 }
@@ -106,8 +101,7 @@ class _SignInPageState extends State<SignInPage> {
                             const SizedBox(height: 20.0),
                             const Text(
                               'Password',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 15),
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                             ),
                             const SizedBox(
                               height: 5,
@@ -117,9 +111,7 @@ class _SignInPageState extends State<SignInPage> {
                               decoration: InputDecoration(
                                 labelText: 'Password',
                                 suffixIcon: IconButton(
-                                  icon: Icon(_isObscure
-                                      ? Icons.visibility
-                                      : Icons.visibility_off),
+                                  icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
                                   onPressed: () {
                                     setState(() {
                                       _isObscure = !_isObscure;
@@ -133,8 +125,8 @@ class _SignInPageState extends State<SignInPage> {
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your password';
-                                } else if (value.length < 8) {
-                                  return 'Password must be at least 8 characters long';
+                                } else if (value.length < 6) {
+                                  return 'Password must be at least 6 characters long';
                                 }
                                 return null;
                               },
@@ -186,8 +178,10 @@ class _SignInPageState extends State<SignInPage> {
                             ElevatedButton(
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
-                                 // signInCubit.signIn('', '');
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const MainPage(),));
+                                  context
+                                      .read<SignInCubit>()
+                                      .signIn(_emailController.text, _passwordController.text);
+                                  //  Navigator.push(context, MaterialPageRoute(builder: (context) => const MainPage(),));
                                 }
                               },
                               style: ElevatedButton.styleFrom(

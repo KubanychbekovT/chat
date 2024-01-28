@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ChatSearcherState {
-  List<ChatResponse> get searchedChats => throw _privateConstructorUsedError;
+  List<Chat> get searchedChats => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ChatSearcherStateCopyWith<ChatSearcherState> get copyWith =>
@@ -29,7 +29,7 @@ abstract class $ChatSearcherStateCopyWith<$Res> {
           ChatSearcherState value, $Res Function(ChatSearcherState) then) =
       _$ChatSearcherStateCopyWithImpl<$Res, ChatSearcherState>;
   @useResult
-  $Res call({List<ChatResponse> searchedChats});
+  $Res call({List<Chat> searchedChats});
 }
 
 /// @nodoc
@@ -51,7 +51,7 @@ class _$ChatSearcherStateCopyWithImpl<$Res, $Val extends ChatSearcherState>
       searchedChats: null == searchedChats
           ? _value.searchedChats
           : searchedChats // ignore: cast_nullable_to_non_nullable
-              as List<ChatResponse>,
+              as List<Chat>,
     ) as $Val);
   }
 }
@@ -64,7 +64,7 @@ abstract class _$$ChatSearcherStateImplCopyWith<$Res>
       __$$ChatSearcherStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ChatResponse> searchedChats});
+  $Res call({List<Chat> searchedChats});
 }
 
 /// @nodoc
@@ -84,7 +84,7 @@ class __$$ChatSearcherStateImplCopyWithImpl<$Res>
       null == searchedChats
           ? _value._searchedChats
           : searchedChats // ignore: cast_nullable_to_non_nullable
-              as List<ChatResponse>,
+              as List<Chat>,
     ));
   }
 }
@@ -92,12 +92,12 @@ class __$$ChatSearcherStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ChatSearcherStateImpl implements _ChatSearcherState {
-  _$ChatSearcherStateImpl(final List<ChatResponse> searchedChats)
+  _$ChatSearcherStateImpl(final List<Chat> searchedChats)
       : _searchedChats = searchedChats;
 
-  final List<ChatResponse> _searchedChats;
+  final List<Chat> _searchedChats;
   @override
-  List<ChatResponse> get searchedChats {
+  List<Chat> get searchedChats {
     if (_searchedChats is EqualUnmodifiableListView) return _searchedChats;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_searchedChats);
@@ -130,11 +130,11 @@ class _$ChatSearcherStateImpl implements _ChatSearcherState {
 }
 
 abstract class _ChatSearcherState implements ChatSearcherState {
-  factory _ChatSearcherState(final List<ChatResponse> searchedChats) =
+  factory _ChatSearcherState(final List<Chat> searchedChats) =
       _$ChatSearcherStateImpl;
 
   @override
-  List<ChatResponse> get searchedChats;
+  List<Chat> get searchedChats;
   @override
   @JsonKey(ignore: true)
   _$$ChatSearcherStateImplCopyWith<_$ChatSearcherStateImpl> get copyWith =>

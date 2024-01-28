@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "632217680205",
+    "project_id": "elif-chat",
+    "storage_bucket": "elif-chat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632217680205:android:94967ac5b9a96c82aa9f04",
+        "android_client_info": {
+          "package_name": "com.example.chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIdEqVBgRbYikIEGpFLiDA2lv4PoiJa-s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

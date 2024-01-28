@@ -1,29 +1,43 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class User {
-  final int userId;
-  final String nickname;
-  final String email;
-  bool selected;
+  final String name;
+  final String uid;
+  final DocumentReference reference;
+  final String? fcmToken;
 
   User({
-     this.userId = 0,
-    required this.nickname,
-    required this.email,
-    this.selected = false,
+    required this.name,
+    required this.uid,
+    required this.reference,
+    this.fcmToken,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-        userId: json['id'] as int,
-        nickname: json['nickname'] as String,
-        email: json['email'] as String,
+      name: json['name'],
+      uid: json['uid'],
+      reference: json['reference'],
+      fcmToken: json['fcmToken'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'userId': userId,
-      'nickname': nickname,
-      'email': email,
+      'name': name,
+      'uid': uid,
+      'reference': reference,
+      'fcmToken': fcmToken,
     };
+  }
+
+  factory User.fromFirestore(DocumentSnapshot<Map<String, dynamic>> document) {
+    final data = document.data()!;
+    return User(
+      name: data['name'],
+      uid: data['uid'],
+      reference: document.reference,
+      fcmToken: data['fcmToken'],
+    );
   }
 }
