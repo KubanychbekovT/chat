@@ -1,3 +1,5 @@
+import 'package:chat/application/user/profile_manager.dart';
+import 'package:chat/managers/chat_manager.dart';
 import 'package:chat/presentation/chat/chat_overview/chat_overview_page.dart';
 import 'package:chat/presentation/chat/more/group/group_overview_page.dart';
 import 'package:chat/presentation/chat/more/user_information/user_information_page.dart';
@@ -12,6 +14,13 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
+
+  @override
+  void initState() {
+    chatsManager.init();
+    profileManager.init();
+    super.initState();
+  }
 
   final List<Widget> _pages = [
     ChatOverviewPage(),
@@ -43,10 +52,7 @@ class _MainPageState extends State<MainPage> {
             icon: Icon(Icons.message),
             label: "Chats",
           ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.group_work),
-              label: "Groups"
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.group_work), label: "Groups"),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_box),
             label: "Profile",

@@ -1,8 +1,9 @@
-import 'package:chat/presentation/chat/chat_dialog/chat_dialog_page.dart';
-import 'package:chat/presentation/chat/widgets/custom_card.dart';
+import 'package:chat/application/chat/chat/chat_watcher_cubit.dart';
+import 'package:chat/presentation/chat/widgets/chat_card.dart';
 import 'package:chat/presentation/chat/widgets/search_field.dart';
 import 'package:chat/presentation/core/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ChatOverviewPage extends StatefulWidget {
   const ChatOverviewPage({super.key});
@@ -16,55 +17,74 @@ class _ChatOverviewPageState extends State<ChatOverviewPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const CustomDrawer(),
-      appBar: AppBar(
-        iconTheme: IconThemeData(color: Colors.white),
-        title: _isSearching ? const SearchField() : const Text('ChatAppX', style: TextStyle(color: Colors.white),),
-        backgroundColor: const Color(0xff222e3a),
-        leading: _isSearching ? IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            setState(() {
-              _isSearching = false;
-            });
-          },
-        ) : null,
-        actions: [
-          _isSearching ? const SizedBox.shrink() : IconButton(
-            onPressed: () {
-              setState(() {
-                _isSearching = true;
-              });
-            },
-            icon: const Icon(Icons.search,color: Colors.white,),
-          ),
-        ],
-      ),
-      backgroundColor: const Color(0xff1b252f),
-      body: ListView.builder(
-        itemCount: 6,
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ChatDialogPage()),
-                  );
-                },
-                child: const CustomCard(),
-              ),
+    return BlocProvider(
+      create: (context) => ChatWatcherCubit()..init(),
+      child: Scaffold(
+          drawer: const CustomDrawer(),
+          appBar: AppBar(
+            iconTheme: const IconThemeData(color: Colors.white),
+            title: _isSearching
+                ? const SearchField()
+                : const Text(
+                    'ChatAppX',
+                    style: TextStyle(color: Colors.white),
+                  ),
+            backgroundColor: const Color(0xff222e3a),
+            leading: _isSearching
+                ? IconButton(
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () {
+                      setState(() {
+                        _isSearching = false;
+                      });
+                    },
+                  )
+                : null,
+            actions: [
+              _isSearching
+                  ? const SizedBox.shrink()
+                  : IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _isSearching = true;
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
+                    ),
             ],
-          );
-        })
+          ),
+          backgroundColor: const Color(0xff1b252f),
+          body: BlocBuilder<ChatWatcherCubit, ChatWatcherState>(
+            builder: (context, state) {
+              return state.maybeMap(
+                loaded: (state) {
+                  final chats = state.chats;
+                  return ListView.builder(
+                      itemCount: chats.length,
+                      itemBuilder: (context, index) {
+                        final chat = chats[index];
+                        return Column(
+                          children: [
+                            ChatCard(
+                              chat: chat,
+                            ),
+                          ],
+                        );
+                      });
+                },
+                loading: (_) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                orElse: () => const SizedBox(),
+              );
+            },
+          )),
     );
   }
 }
-
-
-
 
 // class ChatOverviewPage extends StatelessWidget {
 //   const ChatOverviewPage({Key? key}) : super(key: key);
