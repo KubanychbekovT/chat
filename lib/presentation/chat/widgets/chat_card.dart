@@ -29,11 +29,13 @@ class ChatCard extends StatelessWidget {
       ),
       subtitle: Row(
         children: [
-          Text(
-            chat.messages.last.text,
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.grey,
+          Flexible(
+            child: Text(
+              chat.messages.last.text,
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey,
+              ),
             ),
           ),
         ],

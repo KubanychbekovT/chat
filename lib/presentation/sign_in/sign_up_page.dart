@@ -1,10 +1,11 @@
 import 'package:chat/application/auth/sign_in/sign_in_cubit.dart';
+import 'package:chat/application/auth/sign_up/sign_up_cubit.dart';
 import 'package:chat/presentation/core/main_page.dart';
-import 'package:chat/presentation/sign_in/forgot_password.dart';
 import 'package:chat/presentation/sign_in/sign_in_page.dart';
-import 'package:chat/presentation/sign_in/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../repository/user/user_repository.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -13,6 +14,8 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isObscure = true;
   bool _agreeWithTerms = false;
@@ -20,6 +23,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     final signInCubit = context.read<SignInCubit>();
+    final userRepository = UserRepository();
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -87,6 +91,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: <Widget>[
                             TextFormField(
+                              controller: _emailController,
                               decoration: const InputDecoration(
                                 labelText: 'Email',
                                 border: OutlineInputBorder(),
@@ -97,7 +102,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 if (value == null || value.isEmpty) {
                                   return 'Please enter your email';
                                 } else if (!RegExp(
-                                    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                                        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
                                     .hasMatch(value)) {
                                   return 'Please enter a valid email';
                                 }
@@ -189,29 +194,49 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                             const SizedBox(height: 56.0),
                             ElevatedButton(
-                              onPressed: () {
+                              onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
-                                  signInCubit.signIn('', '');
+                                  final email = _emailController.text;
+                                  final password = _passwordController.text;
+                                  final name = _nameController.text;
+
+                                  await userRepository.registerUser(
+                                    email: email,
+                                    password: password,
+                                    name: name,
+                                  );
+
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const MainPage(),
+                                    ),
+                                  );
                                 }
                               },
                               style: ElevatedButton.styleFrom(
-                                  primary: const Color(0xff1b252f),
-                                  minimumSize: const Size(double.infinity, 50),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4.0))),
-                              child: BlocBuilder<SignInCubit, SignInState>(
+                                primary: const Color(0xff1b252f),
+                                minimumSize: const Size(double.infinity, 50),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4.0),
+                                ),
+                              ),
+                              child: BlocBuilder<SignUpCubit, SignUpState>(
                                 builder: (context, state) {
                                   return state.maybeMap(
-                                      loading: (_) => const Center(
-                                        child: CircularProgressIndicator(),
+                                    loading: (_) => const Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+
+                                    orElse: () => const Text(
+                                      'Sign Up',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 18,
                                       ),
-                                      orElse: () => const Text(
-                                        'Sign Up',
-                                        style: TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 18),
-                                      ));
+                                    ),
+                                  );
                                 },
                               ),
                             ),

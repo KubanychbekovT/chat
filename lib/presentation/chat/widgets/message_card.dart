@@ -1,5 +1,6 @@
 import 'package:chat/domain/chat/message/message.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class MessageCard extends StatelessWidget {
   final Message message;
@@ -26,7 +27,7 @@ class MessageCard extends StatelessWidget {
             ),
             SizedBox(height: 4),
             Text(
-              '${message.createdAt}',
+              DateFormat('HH:mm').format(message.createdAt),
               style: const TextStyle(color: Colors.grey),
             ),
           ],
