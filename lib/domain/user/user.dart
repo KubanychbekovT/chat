@@ -5,12 +5,14 @@ class User {
   final String uid;
   final DocumentReference reference;
   final String? fcmToken;
+  final String? avatarUrl;
 
   User({
     required this.name,
     required this.uid,
     required this.reference,
     this.fcmToken,
+    this.avatarUrl,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -19,6 +21,7 @@ class User {
       uid: json['uid'],
       reference: json['reference'],
       fcmToken: json['fcmToken'],
+      avatarUrl: json['avatarUrl'],
     );
   }
 
@@ -28,6 +31,7 @@ class User {
       'uid': uid,
       'reference': reference,
       'fcmToken': fcmToken,
+      'avatarUrl': avatarUrl,
     };
   }
 
@@ -38,6 +42,7 @@ class User {
       uid: data['uid'],
       reference: document.reference,
       fcmToken: data['fcmToken'],
+      avatarUrl: data['avatarUrl'],
     );
   }
 }

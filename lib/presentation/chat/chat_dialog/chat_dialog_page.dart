@@ -1,7 +1,7 @@
 import 'package:chat/application/chat/message/message_cubit.dart';
 import 'package:chat/domain/chat/chat/chat.dart';
 import 'package:chat/domain/chat/message/message.dart';
-import 'package:chat/presentation/chat/widgets/info_user.dart';
+import 'package:chat/presentation/chat/widgets/user_details.dart';
 import 'package:chat/presentation/chat/widgets/message_card.dart';
 import 'package:chat/repository/user/user_repository.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +62,7 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) =>
-                          const UserDetailPage(
+                          const UserDetailsPage(
                               username: 'Dev Stack', bio: 'Flutter Engineer'),
                         ));
                   },

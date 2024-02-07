@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class UserDetailPage extends StatelessWidget {
+class UserDetailsPage extends StatelessWidget {
   final String username;
   final String bio;
 
-  const UserDetailPage({
+  const UserDetailsPage({
     Key? key,
     required this.username,
     required this.bio,
@@ -13,10 +13,13 @@ class UserDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff1b252f),
+      backgroundColor: const Color(0xff1b252f),
       appBar: AppBar(
-        backgroundColor: Color(0xff222e3a),
-        title: Text('Profile'),
+        backgroundColor: const Color(0xff222e3a),
+        title: const Text(
+          'Profile',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -24,17 +27,17 @@ class UserDetailPage extends StatelessWidget {
           children: [
             Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
+                const Padding(
+                  padding: EdgeInsets.all(10.0),
                   child: CircleAvatar(
                     backgroundColor: Colors.blueGrey,
                     radius: 30,
                   ),
                 ),
-                SizedBox(width: 20),
+                const SizedBox(width: 20),
                 Text(
                   username,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -43,22 +46,21 @@ class UserDetailPage extends StatelessWidget {
               ],
             ),
             Padding(
-              padding: EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-    'Information',
+                  const Text(
+                    'Information',
                     style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue
-                    ),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     bio,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
                     ),
