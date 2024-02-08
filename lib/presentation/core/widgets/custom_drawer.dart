@@ -1,6 +1,6 @@
 import 'package:chat/application/auth/profile/profile_cubit.dart';
+import 'package:chat/presentation/chat/more/profile/profile_page.dart';
 import 'package:chat/presentation/chat/more/settings/settings_page.dart';
-import 'package:chat/presentation/chat/more/user_information/user_information_page.dart';
 import 'package:chat/presentation/chat/widgets/select_user.dart';
 import 'package:chat/presentation/sign_in/sign_in_page.dart';
 import 'package:flutter/material.dart';
@@ -65,7 +65,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => const UserInformationPage(
+                                      builder: (context) => const ProfilePage(
                                         nickname: 'Tiger',
                                         email: 'amur@gmail.com',
                                       ),

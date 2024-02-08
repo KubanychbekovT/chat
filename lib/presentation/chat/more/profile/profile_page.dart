@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class UserInformationPage extends StatelessWidget {
+class ProfilePage extends StatelessWidget {
   final String nickname;
   final String email;
 
-  const UserInformationPage({super.key, required this.nickname, required this.email});
+  const ProfilePage({super.key, required this.nickname, required this.email});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class UserInformationPage extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.all(10.0),
                   child: CircleAvatar(
-                    backgroundColor: Colors.blueGrey,
+                    backgroundImage: NetworkImage('https://www.istockphoto.com/vector/default-avatar-profile-icon-vector-gm1337144146-418137046'),
                     radius: 30,
                   ),
                 ),

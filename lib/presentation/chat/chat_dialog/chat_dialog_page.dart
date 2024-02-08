@@ -215,15 +215,15 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
         if (!isMyMessage)
           Padding(
             padding: const EdgeInsets.only(bottom: 4.0),
-            child: Text(
-              message.sender,
-              style: TextStyle(
-                color: Colors.grey,
-                fontSize: 12.0,
-              ),
-            ),
+            // child: Text(
+            //   message.sender,
+            //   style: TextStyle(
+            //     color: Colors.red,
+            //     fontSize: 12.0,
+            //   ),
+            // ),
           ),
-        MessageCard(message: message),
+        MessageCard(message: message, isMyMessage: isMyMessage,),
       ],
     );
   }

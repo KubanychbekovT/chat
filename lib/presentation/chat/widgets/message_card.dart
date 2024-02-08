@@ -4,18 +4,23 @@ import 'package:intl/intl.dart';
 
 class MessageCard extends StatelessWidget {
   final Message message;
+  final bool isMyMessage;
 
-  const MessageCard({required this.message, Key? key}) : super(key: key);
+  const MessageCard({
+    required this.message,
+    required this.isMyMessage,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.centerRight,
+      alignment: isMyMessage ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         margin: EdgeInsets.all(8.0),
         padding: EdgeInsets.all(12.0),
         decoration: BoxDecoration(
-          color: Color(0xff222e3a),
+          color: isMyMessage ? Color(0xff1167b1) : Color(0xff222e3a),
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Column(
@@ -36,3 +41,4 @@ class MessageCard extends StatelessWidget {
     );
   }
 }
+

@@ -4,7 +4,6 @@ import 'package:chat/presentation/core/main_page.dart';
 import 'package:chat/presentation/sign_in/sign_in_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../repository/user/user_repository.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -123,6 +122,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 labelText: 'Username',
                                 border: OutlineInputBorder(),
                               ),
+                              controller: _nameController,
                               obscureText: _isObscure,
                               onChanged: (value) {},
                               validator: (value) {

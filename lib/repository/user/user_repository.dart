@@ -26,9 +26,6 @@ class UserRepository {
         email: email,
         password: password,
       );
-
-      String retrievedName = name;
-
       String? fcmToken = await _firebaseMessaging.getToken();
       String? avatarUrl;
       if (avatarPath != null) {
@@ -37,7 +34,7 @@ class UserRepository {
 
       await _firestore.collection('users').doc(userCredential.user!.uid).set({
         'fcmToken': fcmToken,
-        'name': retrievedName,
+        'name': name,
         'uid': userCredential.user!.uid,
         'avatarUrl': avatarUrl,
       });
@@ -55,13 +52,6 @@ class UserRepository {
 }
 
 Future<String?> uploadAvatar(String userId, String imagePath) async {
-  // Implement your image upload logic here (e.g., using Firebase Storage)
-  // Return the uploaded image URL
-  // Example using Firebase Storage:
-  // StorageReference storageReference = FirebaseStorage.instance.ref().child('avatars/$userId.jpg');
-  // UploadTask uploadTask = storageReference.putFile(File(imagePath));
-  // await uploadTask.whenComplete(() => print('Avatar uploaded'));
-  // return storageReference.getDownloadURL();
-  return null; // Return null if no avatar upload logic is implemented
+  return null;
 }
 
