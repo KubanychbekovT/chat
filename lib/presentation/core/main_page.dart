@@ -25,7 +25,9 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> _pages = [
     const ChatOverviewPage(),
     const GroupOverviewPage(),
-    const ProfilePage(nickname: 'Tiger', email: 'amur@gmail.com'),
+     ProfilePage(
+         //nickname: 'Tiger', email: 'amur@gmail.com'
+     ),
   ];
 
   void _onItemTapped(int index) {

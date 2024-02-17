@@ -1,71 +1,185 @@
+import 'package:chat/application/auth/profile/profile_cubit.dart';
+import 'package:chat/repository/user/user_repository.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'dart:io';
+import 'package:path/path.dart';
 
-class ProfilePage extends StatelessWidget {
-  final String nickname;
-  final String email;
+class ProfilePage extends StatefulWidget {
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
 
-  const ProfilePage({super.key, required this.nickname, required this.email});
+class _ProfilePageState extends State<ProfilePage> {
+  XFile? _image;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xff1b252f),
-      appBar: AppBar(
-        backgroundColor: const Color(0xff222e3a),
-        title: const Text('Profile', style: TextStyle(color: Colors.white),),
-        iconTheme: IconThemeData(color: Colors.white),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.all(10.0),
-                  child: CircleAvatar(
-                    backgroundImage: NetworkImage('https://www.istockphoto.com/vector/default-avatar-profile-icon-vector-gm1337144146-418137046'),
-                    radius: 30,
-                  ),
-                ),
-                const SizedBox(width: 20),
-                Text(
-                  nickname,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Information',
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.blue
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    email,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
+    Future getImage() async {
+      var image = await ImagePicker().pickImage(source: ImageSource.gallery);
+
+      setState(() {
+        _image = image!;
+        print('Image Path $_image');
+      });
+    }
+
+    Future uploadPic(BuildContext context) async {
+      if (_image != null) {
+        try {
+          String fileName = basename(_image!.path);
+          firebase_storage.Reference firebaseStorageRef =
+              firebase_storage.FirebaseStorage.instance.ref().child(fileName);
+
+          firebase_storage.UploadTask uploadTask =
+              firebaseStorageRef.putFile(File(_image!.path));
+
+          firebase_storage.TaskSnapshot taskSnapshot =
+              await uploadTask.whenComplete(() => null);
+
+          String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+
+          await UserRepository()
+              .getUser(UserRepository.currentUserId)
+              .then((user) {
+            _firestore.collection('users').doc(user.uid).update({
+              'avatarUrl': downloadUrl,
+            });
+          });
+
+          setState(() {
+            print("Profile Picture uploaded");
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Profile Picture Uploaded')));
+          });
+        } catch (e) {
+          print("Error uploading profile picture: $e");
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('Failed to upload profile picture')));
+        }
+      }
+    }
+
+    return ColoredBox(
+      color: Color(0xff222e3a),
+      child: BlocProvider(
+        create: (context) => ProfileCubit()..loadProfile(),
+        child: BlocBuilder<ProfileCubit, ProfileState>(
+          builder: (context, state) {
+            print("State is ${state}");
+                return state.maybeMap(
+                  loading: (_) =>
+                  const Center(child: CircularProgressIndicator()),
+                  loaded: (state) {
+                    final user = state.user;
+                    return Scaffold(
+                      backgroundColor: const Color(0xff222e3a),
+                      appBar: AppBar(
+                        backgroundColor: Colors.transparent,
+                        title:  Text(
+                          user.name,
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      body: Builder(
+                        builder: (context) =>
+                            Container(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: <Widget>[
+                                  const SizedBox(
+                                    height: 20.0,
+                                  ),
+                                  SizedBox(
+                                    height: 128,
+                                    width: 128,
+                                    child: Stack(
+                                      children: [
+                                        Center(
+                                          child: CircleAvatar(
+                                            radius: 64,
+                                            backgroundColor: Colors.grey,
+                                            backgroundImage:
+                                            getImageProvider(
+                                                state.user.avatarUrl),
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 0,
+                                          right: 0,
+                                          child: IconButton(
+                                            icon: const Icon(
+                                              FontAwesomeIcons.camera,
+                                              size: 24.0,
+                                              color: Colors.white,
+                                            ),
+                                            onPressed: getImage,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 20.0,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment
+                                        .spaceEvenly,
+                                    children: <Widget>[
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary: const Color(0xff476cfb),
+                                          onPrimary: Colors.white,
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: const Text(
+                                          'Cancel',
+                                          style: TextStyle(fontSize: 16.0),
+                                        ),
+                                      ),
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          primary: const Color(0xff476cfb),
+                                          onPrimary: Colors.white,
+                                        ),
+                                        onPressed: () {
+                                          uploadPic(context);
+                                        },
+                                        child: const Text(
+                                          'Submit',
+                                          style: TextStyle(fontSize: 16.0),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                      ),
+                    );
+                  },
+                  orElse: () => const SizedBox(),
+                );
+              },
+            )
+          ),
     );
+  }
+
+  ImageProvider<Object>? getImageProvider(String? avatarUrl) {
+    return ((_image != null)
+        ? FileImage(File(_image!.path))
+        : avatarUrl == null
+            ? const AssetImage('assets/avatar.jpg')
+            : NetworkImage(avatarUrl)) as ImageProvider<Object>?;
   }
 }

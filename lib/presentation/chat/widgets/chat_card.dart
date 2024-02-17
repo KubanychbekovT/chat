@@ -1,6 +1,7 @@
 import 'package:chat/domain/chat/chat/chat.dart';
 import 'package:chat/presentation/chat/chat_dialog/chat_dialog_page.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ChatCard extends StatelessWidget {
   const ChatCard({super.key, required this.chat});
@@ -14,25 +15,26 @@ class ChatCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => ChatDialogPage(
-                    chat: chat,
-                  )),
+            builder: (context) => ChatDialogPage(
+              chat: chat,
+            ),
+          ),
         );
       },
-      leading: CircleAvatar(
+      leading: const CircleAvatar(
         radius: 30,
         backgroundColor: Colors.grey,
       ),
       title: Text(
         chat.withUser!.name,
-        style: TextStyle(fontSize: 16, color: Colors.white),
+        style: const TextStyle(fontSize: 16, color: Colors.white),
       ),
       subtitle: Row(
         children: [
           Flexible(
             child: Text(
               chat.messages.last.text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 12,
                 color: Colors.grey,
               ),
@@ -41,8 +43,8 @@ class ChatCard extends StatelessWidget {
         ],
       ),
       trailing: Text(
-        chat.messages.last.createdAt.toString(),
-        style: TextStyle(color: Colors.grey),
+        DateFormat('yyyy-MM-dd – kk:mm').format(chat.messages.last.createdAt),
+        style: const TextStyle(color: Colors.grey),
       ),
     );
   }

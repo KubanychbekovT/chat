@@ -50,6 +50,7 @@ class _AppWidgetState extends State<AppWidget> with WidgetsBindingObserver {
         BlocProvider(create: (context) => SignUpCubit(AuthFirebaseRepository()),),
       ],
       child: MaterialApp(
+        theme: ThemeData(backgroundColor: const Color(0xff1b252f)),
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
