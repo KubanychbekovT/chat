@@ -68,110 +68,106 @@ class _ProfilePageState extends State<ProfilePage> {
     return ColoredBox(
       color: Color(0xff222e3a),
       child: BlocProvider(
-        create: (context) => ProfileCubit()..loadProfile(),
-        child: BlocBuilder<ProfileCubit, ProfileState>(
-          builder: (context, state) {
-            print("State is ${state}");
-                return state.maybeMap(
-                  loading: (_) =>
-                  const Center(child: CircularProgressIndicator()),
-                  loaded: (state) {
-                    final user = state.user;
-                    return Scaffold(
-                      backgroundColor: const Color(0xff222e3a),
-                      appBar: AppBar(
-                        backgroundColor: Colors.transparent,
-                        title:  Text(
-                          user.name,
-                          style: const TextStyle(
-                            color: Colors.white,
-                          ),
+          create: (context) => ProfileCubit()..loadProfile(),
+          child: BlocBuilder<ProfileCubit, ProfileState>(
+            builder: (context, state) {
+              print("State is ${state}");
+              return state.maybeMap(
+                loading: (_) =>
+                    const Center(child: CircularProgressIndicator()),
+                loaded: (state) {
+                  final user = state.user;
+                  return Scaffold(
+                    backgroundColor: const Color(0xff222e3a),
+                    appBar: AppBar(
+                      backgroundColor: Colors.transparent,
+                      title: Text(
+                        user.name,
+                        style: const TextStyle(
+                          color: Colors.white,
                         ),
                       ),
-                      body: Builder(
-                        builder: (context) =>
-                            Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  const SizedBox(
-                                    height: 20.0,
-                                  ),
-                                  SizedBox(
-                                    height: 128,
-                                    width: 128,
-                                    child: Stack(
-                                      children: [
-                                        Center(
-                                          child: CircleAvatar(
-                                            radius: 64,
-                                            backgroundColor: Colors.grey,
-                                            backgroundImage:
-                                            getImageProvider(
-                                                state.user.avatarUrl),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          bottom: 0,
-                                          right: 0,
-                                          child: IconButton(
-                                            icon: const Icon(
-                                              FontAwesomeIcons.camera,
-                                              size: 24.0,
-                                              color: Colors.white,
-                                            ),
-                                            onPressed: getImage,
-                                          ),
-                                        ),
-                                      ],
+                    ),
+                    body: Builder(
+                      builder: (context) => Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            SizedBox(
+                              height: 128,
+                              width: 128,
+                              child: Stack(
+                                children: [
+                                  Center(
+                                    child: CircleAvatar(
+                                      radius: 64,
+                                      backgroundColor: Colors.grey,
+                                      backgroundImage: getImageProvider(
+                                          state.user.avatarUrl),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 20.0,
+                                  Positioned(
+                                    bottom: 0,
+                                    right: 0,
+                                    child: IconButton(
+                                      icon: const Icon(
+                                        FontAwesomeIcons.camera,
+                                        size: 24.0,
+                                        color: Colors.white,
+                                      ),
+                                      onPressed: getImage,
+                                    ),
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment
-                                        .spaceEvenly,
-                                    children: <Widget>[
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          primary: const Color(0xff476cfb),
-                                          onPrimary: Colors.white,
-                                        ),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child: const Text(
-                                          'Cancel',
-                                          style: TextStyle(fontSize: 16.0),
-                                        ),
-                                      ),
-                                      ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          primary: const Color(0xff476cfb),
-                                          onPrimary: Colors.white,
-                                        ),
-                                        onPressed: () {
-                                          uploadPic(context);
-                                        },
-                                        child: const Text(
-                                          'Submit',
-                                          style: TextStyle(fontSize: 16.0),
-                                        ),
-                                      ),
-                                    ],
-                                  )
                                 ],
                               ),
                             ),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor: Colors.white,
+                                    backgroundColor: const Color(0xff476cfb),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: const Text(
+                                    'Cancel',
+                                    style: TextStyle(fontSize: 16.0),
+                                  ),
+                                ),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor: Colors.white,
+                                    backgroundColor: const Color(0xff476cfb),
+                                  ),
+                                  onPressed: () {
+                                    uploadPic(context);
+                                  },
+                                  child: const Text(
+                                    'Submit',
+                                    style: TextStyle(fontSize: 16.0),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
-                    );
-                  },
-                  orElse: () => const SizedBox(),
-                );
-              },
-            )
-          ),
+                    ),
+                  );
+                },
+                orElse: () => const SizedBox(),
+              );
+            },
+          )),
     );
   }
 

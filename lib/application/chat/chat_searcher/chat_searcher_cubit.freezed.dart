@@ -12,11 +12,13 @@ part of 'chat_searcher_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ChatSearcherState {
   List<Chat> get searchedChats => throw _privateConstructorUsedError;
+  List<User> get searchedUsers => throw _privateConstructorUsedError;
+  bool get isLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ChatSearcherStateCopyWith<ChatSearcherState> get copyWith =>
@@ -29,7 +31,8 @@ abstract class $ChatSearcherStateCopyWith<$Res> {
           ChatSearcherState value, $Res Function(ChatSearcherState) then) =
       _$ChatSearcherStateCopyWithImpl<$Res, ChatSearcherState>;
   @useResult
-  $Res call({List<Chat> searchedChats});
+  $Res call(
+      {List<Chat> searchedChats, List<User> searchedUsers, bool isLoading});
 }
 
 /// @nodoc
@@ -46,12 +49,22 @@ class _$ChatSearcherStateCopyWithImpl<$Res, $Val extends ChatSearcherState>
   @override
   $Res call({
     Object? searchedChats = null,
+    Object? searchedUsers = null,
+    Object? isLoading = null,
   }) {
     return _then(_value.copyWith(
       searchedChats: null == searchedChats
           ? _value.searchedChats
           : searchedChats // ignore: cast_nullable_to_non_nullable
               as List<Chat>,
+      searchedUsers: null == searchedUsers
+          ? _value.searchedUsers
+          : searchedUsers // ignore: cast_nullable_to_non_nullable
+              as List<User>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -64,7 +77,8 @@ abstract class _$$ChatSearcherStateImplCopyWith<$Res>
       __$$ChatSearcherStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Chat> searchedChats});
+  $Res call(
+      {List<Chat> searchedChats, List<User> searchedUsers, bool isLoading});
 }
 
 /// @nodoc
@@ -79,12 +93,22 @@ class __$$ChatSearcherStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? searchedChats = null,
+    Object? searchedUsers = null,
+    Object? isLoading = null,
   }) {
     return _then(_$ChatSearcherStateImpl(
-      null == searchedChats
+      searchedChats: null == searchedChats
           ? _value._searchedChats
           : searchedChats // ignore: cast_nullable_to_non_nullable
               as List<Chat>,
+      searchedUsers: null == searchedUsers
+          ? _value._searchedUsers
+          : searchedUsers // ignore: cast_nullable_to_non_nullable
+              as List<User>,
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -92,8 +116,12 @@ class __$$ChatSearcherStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ChatSearcherStateImpl implements _ChatSearcherState {
-  _$ChatSearcherStateImpl(final List<Chat> searchedChats)
-      : _searchedChats = searchedChats;
+  _$ChatSearcherStateImpl(
+      {required final List<Chat> searchedChats,
+      required final List<User> searchedUsers,
+      required this.isLoading})
+      : _searchedChats = searchedChats,
+        _searchedUsers = searchedUsers;
 
   final List<Chat> _searchedChats;
   @override
@@ -103,23 +131,41 @@ class _$ChatSearcherStateImpl implements _ChatSearcherState {
     return EqualUnmodifiableListView(_searchedChats);
   }
 
+  final List<User> _searchedUsers;
   @override
-  String toString() {
-    return 'ChatSearcherState(searchedChats: $searchedChats)';
+  List<User> get searchedUsers {
+    if (_searchedUsers is EqualUnmodifiableListView) return _searchedUsers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_searchedUsers);
   }
 
   @override
-  bool operator ==(dynamic other) {
+  final bool isLoading;
+
+  @override
+  String toString() {
+    return 'ChatSearcherState(searchedChats: $searchedChats, searchedUsers: $searchedUsers, isLoading: $isLoading)';
+  }
+
+  @override
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatSearcherStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._searchedChats, _searchedChats));
+                .equals(other._searchedChats, _searchedChats) &&
+            const DeepCollectionEquality()
+                .equals(other._searchedUsers, _searchedUsers) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_searchedChats));
+      runtimeType,
+      const DeepCollectionEquality().hash(_searchedChats),
+      const DeepCollectionEquality().hash(_searchedUsers),
+      isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -130,11 +176,17 @@ class _$ChatSearcherStateImpl implements _ChatSearcherState {
 }
 
 abstract class _ChatSearcherState implements ChatSearcherState {
-  factory _ChatSearcherState(final List<Chat> searchedChats) =
-      _$ChatSearcherStateImpl;
+  factory _ChatSearcherState(
+      {required final List<Chat> searchedChats,
+      required final List<User> searchedUsers,
+      required final bool isLoading}) = _$ChatSearcherStateImpl;
 
   @override
   List<Chat> get searchedChats;
+  @override
+  List<User> get searchedUsers;
+  @override
+  bool get isLoading;
   @override
   @JsonKey(ignore: true)
   _$$ChatSearcherStateImplCopyWith<_$ChatSearcherStateImpl> get copyWith =>

@@ -1,5 +1,6 @@
 import 'package:chat/application/auth/sign_in/sign_in_cubit.dart';
 import 'package:chat/application/auth/sign_up/sign_up_cubit.dart';
+import 'package:chat/application/chat/chat_searcher/chat_searcher_cubit.dart';
 import 'package:chat/managers/chat_manager.dart';
 import 'package:chat/presentation/core/main_page.dart';
 import 'package:chat/presentation/sign_in/sign_in_page.dart';
@@ -48,6 +49,7 @@ class _AppWidgetState extends State<AppWidget> with WidgetsBindingObserver {
       providers: [
         BlocProvider(create: (context) => SignInCubit(),),
         BlocProvider(create: (context) => SignUpCubit(AuthFirebaseRepository()),),
+        BlocProvider(create: (context) => ChatSearcherCubit(),)
       ],
       child: MaterialApp(
         theme: ThemeData(backgroundColor: const Color(0xff1b252f)),

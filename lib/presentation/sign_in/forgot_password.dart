@@ -45,7 +45,7 @@ class ResetPassword extends StatelessWidget {
               const SizedBox(height: 30),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    primary: const Color(0xff1b252f),
+                    backgroundColor: const Color(0xff1b252f),
                     minimumSize: const Size(double.infinity, 50),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(4.0),

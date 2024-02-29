@@ -25,9 +25,7 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> _pages = [
     const ChatOverviewPage(),
     const GroupOverviewPage(),
-     ProfilePage(
-         //nickname: 'Tiger', email: 'amur@gmail.com'
-     ),
+    ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -55,8 +53,8 @@ class _MainPageState extends State<MainPage> {
             label: "Chats",
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.group_work),
-              label: "Groups",
+            icon: Icon(Icons.group_work),
+            label: "Groups",
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_box),

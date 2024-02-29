@@ -49,9 +49,28 @@ class UserRepository {
   }
 
   static String get currentUserId => FirebaseAuth.instance.currentUser!.uid;
+
+  searchUsers(String query) {}
 }
 
 Future<String?> uploadAvatar(String userId, String imagePath) async {
   return null;
 }
 
+
+Future<List<User>> searchUsers(String query) async {
+  print('Searching users with query: $query');
+  final List<User> searchedUsers = [];
+  await FirebaseFirestore.instance
+      .collection('users')
+      .where('name', isGreaterThanOrEqualTo: query)
+      .where('name', isLessThan: query + 'z')
+      .get()
+      .then((value) {
+    for (var element in value.docs) {
+      searchedUsers.add(User.fromFirestore(element));
+    }
+  });
+  print('Found ${searchedUsers.length} users.');
+  return searchedUsers;
+}

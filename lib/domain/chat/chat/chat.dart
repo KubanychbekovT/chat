@@ -52,3 +52,9 @@ class Chat {
   int get hashCode =>
       participants.hashCode ^ withUser.hashCode ^ messages.hashCode ^ reference.hashCode;
 }
+
+
+// 1) получить список юзеров через where
+// 2) парсить юзеров
+// 3) отобразить
+// 4) общий серча
