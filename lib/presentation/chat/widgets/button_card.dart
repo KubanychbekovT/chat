@@ -9,12 +9,12 @@ class ButtonCard extends StatelessWidget {
       leading: CircleAvatar(
         child: IconButton(
           onPressed: () {},
-          icon: Icon(Icons.person_add_alt_1, color: Color(0xff1b252f),),
+          icon: const Icon(Icons.person_add_alt_1, color: Color(0xff1b252f),),
         ),
         radius: 30,
         backgroundColor: Colors.grey,
       ),
-      title: Text('New Group', style: TextStyle(fontSize: 16,  color: Colors.white
+      title: const Text('New Group', style: TextStyle(fontSize: 16,  color: Colors.white
       ),
       ),
     );

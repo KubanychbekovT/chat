@@ -23,9 +23,7 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-      MessageCubit()
-        ..init(widget.chat),
+      create: (context) => MessageCubit()..init(widget.chat),
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
@@ -61,14 +59,14 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                          const UserDetailsPage(
+                          builder: (context) => const UserDetailsPage(
                               username: 'Dev Stack', bio: 'Flutter Engineer'),
                         ));
                   },
                   child: Text(
                     widget.chat.withUser!.name,
-                    style: const TextStyle(fontSize: 18.5,
+                    style: const TextStyle(
+                        fontSize: 18.5,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
@@ -96,8 +94,8 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
                       itemCount: messages.length,
                       itemBuilder: (context, index) {
                         final message = messages[index];
-                        final isMyMessage = message.sender == UserRepository
-                            .currentUserId;
+                        final isMyMessage =
+                            message.sender == UserRepository.currentUserId;
 
                         if (index > 0 &&
                             !_shouldShowDateDivider(
@@ -125,8 +123,8 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
                           child: Card(
                             color: const Color(0xff212d3b),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8.0),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
                               child: TextFormField(
                                 keyboardType: TextInputType.multiline,
                                 maxLines: 5,
@@ -142,11 +140,10 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
                                   ),
                                   border: InputBorder.none,
                                   hintText: 'Message...',
-                                  hintStyle: const TextStyle(
-                                      color: Colors.white70),
+                                  hintStyle:
+                                      const TextStyle(color: Colors.white70),
                                 ),
                                 style: const TextStyle(color: Colors.white),
-
                               ),
                             ),
                           ),
@@ -156,8 +153,9 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
                           onPressed: () {
                             String messageText = _messageController.text;
                             if (messageText.isNotEmpty) {
-                              context.read<MessageCubit>().sendMessage(
-                                  messageText);
+                              context
+                                  .read<MessageCubit>()
+                                  .sendMessage(messageText);
                               _messageController.clear();
                             }
                           },
@@ -174,9 +172,8 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
     );
   }
 
-
-  bool _shouldShowDateDivider(DateTime previousMessageTime,
-      DateTime currentMessageTime) {
+  bool _shouldShowDateDivider(
+      DateTime previousMessageTime, DateTime currentMessageTime) {
     return !DateTimeHelper.areSameDay(previousMessageTime, currentMessageTime);
   }
 
@@ -208,9 +205,8 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
 
   Widget _buildMessage(bool isMyMessage, Message message) {
     return Column(
-      crossAxisAlignment: isMyMessage
-          ? CrossAxisAlignment.end
-          : CrossAxisAlignment.start,
+      crossAxisAlignment:
+          isMyMessage ? CrossAxisAlignment.end : CrossAxisAlignment.start,
       children: [
         if (!isMyMessage)
           Padding(
@@ -223,7 +219,10 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
             //   ),
             // ),
           ),
-        MessageCard(message: message, isMyMessage: isMyMessage,),
+        MessageCard(
+          message: message,
+          isMyMessage: isMyMessage,
+        ),
       ],
     );
   }
@@ -231,7 +230,9 @@ class _ChatDialogPageState extends State<ChatDialogPage> {
 
 class DateTimeHelper {
   static bool areSameDay(DateTime date1, DateTime date2) {
-    return date1.year == date2.year && date1.month == date2.month && date1.day == date2.day;
+    return date1.year == date2.year &&
+        date1.month == date2.month &&
+        date1.day == date2.day;
   }
 
   static String formatDate(DateTime date) {

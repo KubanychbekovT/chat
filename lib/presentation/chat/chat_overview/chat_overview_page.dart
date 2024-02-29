@@ -13,26 +13,28 @@ class ChatOverviewPage extends StatefulWidget {
 }
 
 class _ChatOverviewPageState extends State<ChatOverviewPage> {
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-      ChatWatcherCubit()
-        ..init(),
+      create: (context) => ChatWatcherCubit()..init(),
       child: Scaffold(
           drawer: const CustomDrawer(),
           appBar: AppBar(
             iconTheme: const IconThemeData(color: Colors.white),
             backgroundColor: const Color(0xff1b252f),
-            title: Text('ChatAppX',
-              style: TextStyle(color: Colors.white),),
+            title: const Text(
+              'ChatAppX',
+              style: TextStyle(color: Colors.white),
+            ),
             actions: [
               IconButton(
                 icon: const Icon(Icons.search),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(
-                    builder: (context) => ChatSearcherPage(),));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChatSearcherPage(),
+                      ));
                 },
               ),
             ],
@@ -56,8 +58,7 @@ class _ChatOverviewPageState extends State<ChatOverviewPage> {
                         );
                       });
                 },
-                loading: (_) =>
-                const Center(
+                loading: (_) => const Center(
                   child: CircularProgressIndicator(),
                 ),
                 orElse: () => const SizedBox(),

@@ -20,7 +20,7 @@
 //         Navigator.push(
 //           context,
 //           MaterialPageRoute(
-//             builder: (context) => ChatSearcherPage(), // Замените на вашу страницу поиска
+//             builder: (context) => ChatSearcherPage(),
 //           ),
 //         );
 //       },
